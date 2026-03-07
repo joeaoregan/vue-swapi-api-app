@@ -4,23 +4,7 @@
 
     <form v-show="people != null" id="search">
       Search <s>Your Feelings</s> Users:
-
-      <div class="search-wrapper">
-        <input
-          name="query"
-          v-model="searchQuery"
-          placeholder="Search users..."
-        />
-
-        <button
-          v-if="searchQuery"
-          class="clear-btn"
-          @click.prevent="searchQuery = ''"
-          aria-label="Clear search"
-        >
-          ✕
-        </button>
-      </div>
+      <SearchBox v-model="searchQuery" />
     </form>
 
     <LoadingScreen v-if="!ready" />
@@ -48,6 +32,7 @@
 
 <script setup>
 import { ref } from "vue";
+import SearchBox from "@/components/search/SearchBox.vue";
 const searchQuery = ref("");
 </script>
 
