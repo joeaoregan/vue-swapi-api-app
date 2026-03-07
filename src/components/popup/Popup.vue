@@ -1,5 +1,5 @@
 <template>
-  <div class="popup">
+  <div class="popup" ref="overlay" @click="handleClickOutside">
     <div v-if="display" class="popup-inner">
       <h1>{{ name }}</h1>
 
@@ -32,6 +32,7 @@ const props = defineProps({
 const emit = defineEmits(["togglePopup"]);
 
 const display = ref(true);
+const overlay = ref(null);
 
 function capitalFirstLetter(word) {
   if (!word) return "";
@@ -51,6 +52,13 @@ function handleKeydown(event) {
   }
 }
 
+function handleClickOutside(event) {
+  // If the click target *is* the overlay, close the popup
+  if (event.target === overlay.value) {
+    emit("togglePopup", "clicked outside");
+  }
+}
+
 onMounted(() => {
   window.addEventListener("keydown", handleKeydown);
 });
@@ -60,6 +68,4 @@ onUnmounted(() => {
 });
 </script>
 
-<style scoped>
-@import "./style.css";
-</style>
+<style src="./style.css"></style>
