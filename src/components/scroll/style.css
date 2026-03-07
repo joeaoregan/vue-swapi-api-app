@@ -2,8 +2,8 @@
   position: fixed;
   bottom: 80px; /* stays above sticky pagination */
   right: 30px;
-  background-color: #990000;
-  color: white;
+  /* background-color: #990000; */
+  /* color: white; */
   border: none;
   padding: 10px 14px;
   border-radius: 4px;
@@ -17,4 +17,9 @@
 
 .scroll-to-top:hover {
   opacity: 1;
+}
+
+.scroll-to-top {
+  background-color: var(--header-bg);
+  color: var(--text);
 }

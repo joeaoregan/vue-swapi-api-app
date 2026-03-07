@@ -13,7 +13,7 @@
 }
 
 .popup-inner {
-  background: #fff;
+  /* background: #fff; */
   padding: 32px;
   border-radius: 8px;
 }
@@ -53,3 +53,9 @@
     background-color: rgba(0, 0, 0, 0.5);
   }
 }
+
+.popup-inner {
+  background: var(--popup-bg);
+  color: var(--text);
+}
+

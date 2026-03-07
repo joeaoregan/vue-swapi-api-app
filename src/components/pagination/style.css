@@ -3,7 +3,7 @@
 .pagination {
   position: sticky;
   bottom: 0;
-  background: #fff;
+  /* background: #fff; */
   padding: 10px 0;
   z-index: 5;
   box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.15);
@@ -34,4 +34,9 @@ button[disabled] {
   background: transparent;
   color: #555;
   font-weight: normal;
+}
+
+.pagination {
+  background: var(--bg);
+  color: var(--text);
 }

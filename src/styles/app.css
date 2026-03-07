@@ -16,3 +16,26 @@
   from { opacity: 0; }
   to   { opacity: 1; }
 }
+
+:root {
+  --bg: #ffffff;
+  --text: #000000;
+  --table-even: #f9f9f9;
+  --table-odd: #d9d9d9;
+  --header-bg: #990000;
+  --popup-bg: #ffffff;
+}
+
+body.dark-mode {
+  --bg: #1e1e1e;
+  --text: #e6e6e6;
+  --table-even: #2a2a2a;
+  --table-odd: #333333;
+  --header-bg: #660000;
+  --popup-bg: #2a2a2a;
+}
+
+body {
+  background: var(--bg);
+  color: var(--text);
+}

@@ -1,7 +1,7 @@
 table {
   border: 2px solid #990000;
   border-radius: 3px;
-  background-color: #fff;
+  /* background-color: #fff; */
 }
 
 th {
@@ -25,12 +25,12 @@ th.active .arrow {
   opacity: 1;
 }
 
-tr:nth-child(even) {
+/* tr:nth-child(even) {
   background-color: #f9f9f9;
 }
 tr:nth-child(odd) {
   background-color: #d9d9d9;
-}
+} */
 
 .arrow {
   display: inline-block;
@@ -76,6 +76,24 @@ thead th {
   position: sticky;
   top: 0;
   z-index: 2;
-  background-color: #990000; /* your existing header color */
+  /* background-color: #990000; your existing header color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+table {
+  background-color: var(--bg);
+  color: var(--text);
+}
+
+tr:nth-child(even) {
+  background-color: var(--table-even);
+}
+
+tr:nth-child(odd) {
+  background-color: var(--table-odd);
+}
+
+th {
+  background-color: var(--header-bg);
+  color: var(--text);
 }

@@ -180,4 +180,4 @@ watch(pageSize, () => {
   </div>
 </template>
 
-<style src="./style.css"></style>
+<style scoped src="./style.css"></style>
