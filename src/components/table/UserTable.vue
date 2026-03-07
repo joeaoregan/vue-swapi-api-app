@@ -1,5 +1,6 @@
 <script setup>
 import { ref, computed, watch, onUnmounted } from "vue";
+import Pagination from "@/components/pagination/Pagination.vue";
 
 const props = defineProps({
   planets: Array,
@@ -84,61 +85,6 @@ const totalPages = computed(() =>
 const paginatedData = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value;
   return filteredData.value.slice(start, start + pageSize.value);
-});
-
-function nextPage() {
-  if (currentPage.value < totalPages.value) currentPage.value++;
-}
-
-function prevPage() {
-  if (currentPage.value > 1) currentPage.value--;
-}
-
-const pageNumbers = computed(() => {
-  const pages = [];
-  for (let i = 1; i <= totalPages.value; i++) {
-    pages.push(i);
-  }
-  return pages;
-});
-
-function goToPage(page) {
-  if (page >= 1 && page <= totalPages.value) {
-    currentPage.value = page;
-  }
-}
-
-const visiblePages = computed(() => {
-  const pages = [];
-  const total = totalPages.value;
-  const current = currentPage.value;
-
-  // Always show first page
-  pages.push(1);
-
-  // Show left ellipsis if needed
-  if (current > 3) {
-    pages.push("…");
-  }
-
-  // Show pages around current page
-  for (let i = current - 1; i <= current + 1; i++) {
-    if (i > 1 && i < total) {
-      pages.push(i);
-    }
-  }
-
-  // Show right ellipsis if needed
-  if (current < total - 2) {
-    pages.push("…");
-  }
-
-  // Always show last page (if more than 1)
-  if (total > 1) {
-    pages.push(total);
-  }
-
-  return pages;
 });
 
 const showScrollTop = ref(false);
@@ -238,34 +184,13 @@ onUnmounted(() => {
         <div v-else class="fade-in"></div>
       </div>
 
-      <div class="pagination">
-        <button @click="prevPage" :disabled="currentPage === 1">
-          Previous
-        </button>
-
-        <button
-          v-for="page in visiblePages"
-          :key="page + '-btn'"
-          @click="page !== '…' && goToPage(page)"
-          :disabled="page === '…'"
-          :class="{ active: currentPage === page }"
-        >
-          {{ page }}
-        </button>
-
-        <span>Page {{ currentPage }} of {{ totalPages }}</span>
-
-        <button @click="nextPage" :disabled="currentPage === totalPages">
-          Next
-        </button>
-
-        <select v-model="pageSize">
-          <option :value="5">5</option>
-          <option :value="10">10</option>
-          <option :value="20">20</option>
-          <option :value="50">50</option>
-        </select>
-      </div>
+      <Pagination
+        :currentPage="currentPage"
+        :totalPages="totalPages"
+        :pageSize="pageSize"
+        @update:currentPage="currentPage = $event"
+        @update:pageSize="pageSize = $event"
+      />
 
       <button class="scroll-to-top" @click="scrollToTop" v-show="showScrollTop">
         ↑ Top

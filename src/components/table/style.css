@@ -89,13 +89,6 @@ tr:nth-child(odd) {
   padding: 4px 8px;
 }
 
-/* Minimal style for active page buttons */
-.pagination button.active {
-  background-color: #990000;
-  color: white;
-  font-weight: bold;
-}
-
 /* ellipses */
 .pagination button[disabled] {
   cursor: default;
@@ -132,16 +125,4 @@ thead th {
 
 .scroll-to-top:hover {
   opacity: 1;
-}
-
-/* Sticky pagination footer */
-.pagination {
-  position: sticky;
-  bottom: 0;
-  background: #fff;
-  padding: 10px 0;
-  z-index: 5;
-  box-shadow: 0 -2px 4px rgba(0, 0, 0, 0.15);
-  transition: box-shadow 0.3s ease;
-  transition: opacity 0.3s ease, bottom 0.3s ease;
 }
