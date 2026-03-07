@@ -1,19 +1,16 @@
 <template>
-  <div>
-    <Navbar></Navbar>
+  <div id="app">
+    <Navbar />
     <DarkModeToggle />
     <router-view />
   </div>
 </template>
 
-<script>
+<script setup>
 import Navbar from "./components/navbar/navbar.vue";
 import DarkModeToggle from "./components/darkmode/DarkModeToggle.vue";
-
-export default {
-  components: {
-    Navbar,
-    DarkModeToggle,
-  },
-};
 </script>
+
+<style>
+/* global styles if you had any */
+</style>

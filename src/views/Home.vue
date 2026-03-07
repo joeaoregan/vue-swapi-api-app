@@ -7,17 +7,38 @@
       <SearchBox v-model="searchQuery" />
     </form>
 
+    <div class="table-switcher" v-if="ready">
+      <button
+        :class="{ active: activeTable === 'people' }"
+        @click="activeTable = 'people'"
+      >
+        People
+      </button>
+
+      <button
+        :class="{ active: activeTable === 'planets' }"
+        @click="activeTable = 'planets'"
+      >
+        Planets
+      </button>
+    </div>
+
     <LoadingScreen v-if="!ready" />
 
-    <UserTable
-      v-else
+    <PeopleTable
+      v-if="activeTable === 'people' && ready"
       @toggle-planet="togglePlanetPopup"
       @toggle-person="togglePersonPopup"
       :planets="planets"
       :users="people"
       :columns="gridColumns"
       :filter-key="searchQuery"
-      :ready="ready"
+    />
+
+    <!-- PLANETS TABLE -->
+    <PlanetsTable
+      v-if="activeTable === 'planets' && ready"
+      :planets="planets"
     />
 
     <PlanetPopup
@@ -39,11 +60,13 @@ import { ref, onMounted } from "vue";
 import axios from "axios";
 
 import SearchBox from "@/components/search/SearchBox.vue";
-import UserTable from "@/components/table/UserTable.vue";
+import PeopleTable from "@/components/table/PeopleTable.vue";
+import PlanetsTable from "@/components/table/PlanetsTable.vue";
 import LoadingScreen from "@/components/loading/LoadingScreen.vue";
 import PlanetPopup from "@/components/popup/PlanetPopup.vue";
 import PersonPopup from "@/components/popup/PersonPopup.vue";
 
+const activeTable = ref("people");
 const ready = ref(false);
 const searchQuery = ref("");
 
