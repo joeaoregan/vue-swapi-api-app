@@ -33,8 +33,3 @@
 .clear-btn:hover {
   color: #000;
 }
-
-:deep(.search-icon) {
-  color: #990000;
-}
-
