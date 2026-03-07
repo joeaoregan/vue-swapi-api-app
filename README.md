@@ -13,15 +13,15 @@ Try it: [Render App](https://vuejs-frontenddemo.onrender.com/ "See App on Render
 
 ![Vue.js App 1](https://raw.githubusercontent.com/joeaoregan/vue-front-end-dev-app/master/screenshots/screenshot1.png "Vue.js App 1")
 
-###### Vue.js App
+###### Vue.js App 1
 
 ![Vue.js App 2](https://raw.githubusercontent.com/joeaoregan/vue-front-end-dev-app/master/screenshots/screenshot2.png "Vue.js App 2 - Popup")
 
-###### Vue.js App
+###### Vue.js App 2 - Planet Information Popup
 
-![Vue.js App 3](https://raw.githubusercontent.com/joeaoregan/vue-front-end-dev-app/master/screenshots/screenshot3.png "Vue.js App 3")
+![Vue.js App 3](https://raw.githubusercontent.com/joeaoregan/vue-front-end-dev-app/master/screenshots/screenshot3.png "Vue.js App 3 - User Error")
 
-###### Vue.js App
+###### Vue.js App 3 - User Not Found Error
 
 ## Project setup
 
