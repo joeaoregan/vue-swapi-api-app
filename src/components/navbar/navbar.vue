@@ -1,56 +1,54 @@
 <template>
-  <div class="navbar">
+  <nav class="navbar">
     <div class="icon">
       <router-link to="/">
-        <img alt="home" src="../../assets/logo2.png" width="30" />
+        <img alt="Home" src="@/assets/logo2.png" width="30" />
       </router-link>
     </div>
+
     <div class="icon">
       <router-link to="/about">
-        <img alt="about" src="../../assets/info.png" width="30" />
+        <img alt="About" src="@/assets/info.png" width="30" />
       </router-link>
     </div>
+
     <div class="icon">
       <a
         href="https://www.linkedin.com/in/joeaoregan/"
-        :target="newTab"
-        :title="titleLinkedIn"
-        class="link"
-        ><img alt="LinkedIn" src="../../assets/linkedin_logo.png" width="30"
-      /></a>
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Joe O'Regan - LinkedIn"
+      >
+        <img alt="LinkedIn" src="@/assets/linkedin_logo.png" width="30" />
+      </a>
     </div>
+
     <div class="icon">
       <a
         href="https://github.com/joeaoregan/"
-        :target="newTab"
-        :title="titleGitHub"
-        ><img alt="GitHub" src="../../assets/github_logo.png" width="30"
-      /></a>
+        target="_blank"
+        rel="noopener noreferrer"
+        title="Joe O'Regan - GitHub"
+      >
+        <img alt="GitHub" src="@/assets/github_logo.png" width="30" />
+      </a>
     </div>
+
     <div class="icon">
       <a
         href="https://github.com/joeaoregan/vue-front-end-dev-app"
-        :target="newTab"
+        target="_blank"
+        rel="noopener noreferrer"
         title="Repo"
-        ><img alt="GitHub" src="../../assets/repo.png" width="30"
-      /></a>
+      >
+        <img alt="Repo" src="@/assets/repo.png" width="30" />
+      </a>
     </div>
-  </div>
+  </nav>
 </template>
 
-<script>
-export default {
-  name: "NavBar",
-  data() {
-    return {
-      titleLinkedIn: "Joe O'Regan - LinkedIn",
-      titleGitHub: "Joe O'Regan - GitHub",
-      newTab: "_blank",
-    };
-  },
-};
+<script setup>
+// No reactive state needed — everything is static
 </script>
 
-<style>
-@import "./style.css";
-</style>
+<style src="./style.css"></style>
