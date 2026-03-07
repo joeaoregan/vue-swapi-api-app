@@ -8,28 +8,78 @@ const props = defineProps({
   filterKey: String,
   ready: Boolean,
 });
+
+// sorting state
 const sortKey = ref("");
 const sortOrders = ref(props.columns.reduce((o, key) => ((o[key] = 1), o), {}));
 
-const filteredData = computed(() => {
-  let { users, filterKey } = props;
-  if (filterKey) {
-    filterKey = filterKey.toLowerCase();
-    users = users.filter((row) => {
-      return Object.keys(row).some((key) => {
-        return String(row[key]).toLowerCase().indexOf(filterKey) > -1;
-      });
-    });
+function capitalFirstLetter(str) {
+  // helper function to capitalise first letter of string
+  return str.charAt(0).toUpperCase() + str.slice(1);
+}
+
+function getPlanetName(url) {
+  function isPlanet(planet) {
+    return planet.url === url;
   }
-  const key = sortKey.value;
-  if (key) {
+
+  // if (planets.find(isPlanet)) {
+  //   var p = planets.find(isPlanet);
+  const p = props.planets.find(isPlanet);
+  if (p) {
+    return {
+      name: p.name,
+      diameter: p.diameter,
+      climate: capitalFirstLetter(p.climate),
+      population: p.population,
+    };
+  } else {
+    return { name: "Loading" };
+  }
+}
+
+function formatOutput(key, text) {
+  // if (key === "created" || key == "edited") {
+  //   var date = new Date(text);
+  //   return new Intl.DateTimeFormat("en-IE", {
+  //     dateStyle: "short",
+  //     timeStyle: "medium",
+  //   }).format(date);
+  // } else
+  if (key === "homeworld") {
+    return getPlanetName(text);
+  } else {
+    return text;
+  }
+}
+
+const filteredData = computed(() => {
+  // let { users, filterKey } = props;
+  // if (filterKey) {
+  // filterKey = filterKey.toLowerCase();
+
+  let users = props.users || [];
+
+  if (props.filterKey) {
+    const fk = props.filterKey.toLowerCase();
+    users = users.filter((user) => 
+      Object.keys(user).some((key) => 
+        // String(user[key]).toLowerCase().indexOf(fk) > -1;
+        String(user[key]).toLowerCase().includes(fk)
+      )
+    );
+  }
+
+  if (sortKey.value) {
+    const key = sortKey.value;
     const order = sortOrders.value[key];
     users = users.slice().sort((a, b) => {
-      a = a[key];
-      b = b[key];
-      return (a === b ? 0 : a > b ? 1 : -1) * order;
+      const x = a[key];
+      const y = b[key];
+      return (x === y ? 0 : x > y ? 1 : -1) * order;
     });
   }
+
   return users;
 });
 
@@ -39,7 +89,7 @@ function sortBy(key) {
 }
 </script>
 
-<script>
+<!-- <script>
 export default {
   name: "UserTable",
   props: {},
@@ -48,44 +98,9 @@ export default {
       planetDetails: "These are not the users you are looking for",
     };
   },
-  methods: {
-    capitalFirstLetter(str) {
-      return str.charAt(0).toUpperCase() + str.slice(1);
-    },
-    getPlanetName(url) {
-      function isPlanet(planet) {
-        return planet.url === url;
-      }
-
-      if (this.planets.find(isPlanet)) {
-        var p = this.planets.find(isPlanet);
-        return {
-          name: p.name,
-          diameter: p.diameter,
-          climate: this.capitalFirstLetter(p.climate),
-          population: p.population,
-        };
-      } else {
-        return { name: "Loading" };
-      }
-    },
-    formatOutput(key, text) {
-      // if (key === "created" || key == "edited") {
-      //   var date = new Date(text);
-      //   return new Intl.DateTimeFormat("en-IE", {
-      //     dateStyle: "short",
-      //     timeStyle: "medium",
-      //   }).format(date);
-      // } else
-      if (key === "homeworld") {
-        return this.getPlanetName(text);
-      } else {
-        return text;
-      }
-    },
-  },
+  methods: {},
 };
-</script>
+</script> -->
 
 <template>
   <div>
@@ -97,9 +112,9 @@ export default {
           <tr>
             <th
               v-for="key in columns"
+              :key="key"
               @click="sortBy(key)"
               :class="{ active: sortKey == key }"
-              :key="key"
               :title="
                 'Sort By ' +
                 capitalFirstLetter(key) +
@@ -112,16 +127,17 @@ export default {
             </th>
           </tr>
         </thead>
+
         <tbody>
-          <tr v-for="entry in filteredData" :key="entry">
+          <tr v-for="entry in filteredData" :key="entry.name">
             <td v-for="key in columns" :key="key">
               <button
-                class="button"
                 v-if="
                   key === 'homeworld' &&
                   formatOutput(key, entry[key]).name != 'unknown' &&
                   formatOutput(key, entry[key]).name != 'Loading'
                 "
+                class="button"
                 @click="$emit('togglePopup', formatOutput(key, entry[key]))"
                 :title="
                   'Click For ' + formatOutput(key, entry[key]).name + ' Info'
@@ -162,7 +178,8 @@ export default {
             src="../../assets/mind-trick.gif"
             width="400"
           />
-          <p>{{ planetDetails }}</p>
+          <!-- <p>{{ planetDetails }}</p> -->
+           <p>These are not the users you are looking for</p>
         </div>
         <p v-else id="users-loading">A Long Time Ago In A Galaxy Far Away...</p>
       </div>

@@ -78,15 +78,12 @@ export default {
   mounted() {
     document.title = "Joe O'Regan SWAPI App";
 
-    let personPage = 1,
-      nextPersonPage = "";
+    let nextPersonPage = "https://swapi.dev/api/people/";
 
     (async () => {
       while (nextPersonPage != null) {
         await axios
-          .get(
-            "https://swapi.tech/api/people/?page=" + personPage + "&format=json"
-          )
+          .get(nextPersonPage)
           .then((response) => {
             this.people = this.people.concat(response.data.results);
             nextPersonPage = response.data.next;
@@ -95,26 +92,20 @@ export default {
             console.error(errors);
           })
           .finally(() => {
-            console.log("People Page " + personPage + " Loaded");
-            personPage++;
+            console.log("People Page Loaded");
           });
       }
       console.log("All Users Loaded");
-      if (nextPlanetPage == null && nextPersonPage == null) this.ready = true;
-      if (this.ready) console.log("Ready: " + this.ready);
+      checkReady();
     })();
 
-    let planetPage = 1,
-      nextPlanetPage = "";
+    let planetPage = 1;
+    let nextPlanetPage = "https://swapi.dev/api/planets/";
 
     (async () => {
-      while (nextPlanetPage != null) {
+      while (nextPlanetPage) {
         await axios
-          .get(
-            "https://swapi.tech/api/planets/?page=" +
-              planetPage +
-              "&format=json"
-          )
+          .get(nextPlanetPage)
           .then((response) => {
             this.planets = this.planets.concat(response.data.results);
             nextPlanetPage = response.data.next;
@@ -122,15 +113,18 @@ export default {
           .catch((errors) => {
             console.error("I have a bad feeling about this: " + errors);
           })
-          .finally(() => {
-            console.log("Planets Page " + planetPage + " Loaded");
-            planetPage++;
-          });
+          .finally(() => console.log("Planets Page " + planetPage + " Loaded"));
       }
       console.log("All Home Planets Loaded");
-      if (nextPlanetPage == null && nextPersonPage == null) this.ready = true;
-      if (this.ready) console.log("Ready: " + this.ready);
+      checkReady(); 
     })();
+
+    const checkReady = () => {
+      if (!nextPlanetPage && !nextPersonPage) {
+        this.ready = true;
+        console.log("Ready:", this.ready);
+      }
+    };
   },
 };
 </script>
