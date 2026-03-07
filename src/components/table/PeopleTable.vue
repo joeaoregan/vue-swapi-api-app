@@ -1,86 +1,117 @@
+<template>
+  <div class="people-table">
+    <table class="center" v-if="filteredData.length">
+      <thead>
+        <tr>
+          <th
+            v-for="key in columns"
+            :key="key"
+            @click="sortBy(key)"
+            :class="{ active: sortKey === key }"
+          >
+            {{ capitalFirstLetter(key) }}
+            <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
+          </th>
+        </tr>
+      </thead>
+
+      <tbody>
+        <tr v-for="entry in paginatedData" :key="entry.name">
+          <td v-for="key in columns" :key="key">
+
+            <!-- NAME POPUP -->
+            <template v-if="key === 'name'">
+              <button class="popup-link" @click="$emit('toggle-person', entry)">
+                <span v-html="highlight(entry.name, filterKey)"></span>
+              </button>
+            </template>
+
+            <!-- HOMEWORLD POPUP -->
+            <template v-else-if="key === 'homeworld'">
+              <button
+                v-if="formatOutput(key, entry[key]).name !== 'unknown'"
+                class="popup-link"
+                @click="$emit('toggle-planet', formatOutput(key, entry[key]))"
+              >
+                {{ formatOutput(key, entry[key]).name }}
+              </button>
+              <span v-else>{{ formatOutput(key, entry[key]).name }}</span>
+            </template>
+
+            <!-- OTHER FIELDS -->
+            <template v-else>
+              <span v-html="highlight(formatOutput(key, entry[key]), filterKey)"></span>
+            </template>
+
+          </td>
+        </tr>
+      </tbody>
+    </table>
+
+    <Pagination
+      :currentPage="currentPage"
+      :totalPages="totalPages"
+      :pageSize="pageSize"
+      @update:currentPage="currentPage = $event"
+      @update:pageSize="pageSize = $event"
+    />
+  </div>
+</template>
+
 <script setup>
 import { ref, computed, watch } from "vue";
 import Pagination from "@/components/pagination/Pagination.vue";
-import ScrollToTop from "@/components/scroll/ScrollToTop.vue";
 
 const props = defineProps({
   planets: Array,
   users: Array,
   columns: Array,
   filterKey: String,
-  ready: Boolean,
 });
 
-// sorting
 const sortKey = ref("");
-const sortOrders = ref(props.columns.reduce((o, key) => ((o[key] = 1), o), {}));
-
-// pagination
-const currentPage = ref(1);
-const pageSize = ref(10);
+const sortOrders = ref(props.columns.reduce((o, k) => ((o[k] = 1), o), {}));
 
 function capitalFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
 function getPlanetName(url) {
-  const planet = props.planets.find((p) => p.url === url);
-
-  if (planet) {
-    return {
-      name: planet.name,
-      diameter: planet.diameter,
-      climate: capitalFirstLetter(planet.climate),
-      population: planet.population,
-    };
-  }
-  return { name: "Loading" };
+  const p = props.planets.find((x) => x.url === url);
+  return p ? { name: p.name } : { name: "unknown" };
 }
 
 function formatOutput(key, value) {
   if (key === "created" || key === "edited") {
-    const date = new Date(value);
     return new Intl.DateTimeFormat("en-IE", {
       dateStyle: "short",
       timeStyle: "medium",
-    }).format(date);
+    }).format(new Date(value));
   }
   return key === "homeworld" ? getPlanetName(value) : value;
 }
 
-// search highlight
 function highlight(text, query) {
-  if (!query || !text) return text;
-
-  const safe = String(text);
-  const regex = new RegExp(`(${query})`, "gi");
-
-  return safe.replace(regex, `<mark>$1</mark>`);
+  if (!query) return text;
+  return String(text).replace(new RegExp(`(${query})`, "gi"), "<mark>$1</mark>");
 }
 
 const filteredData = computed(() => {
-  let userData = props.users || [];
-
+  let data = props.users;
   if (props.filterKey) {
-    const fk = props.filterKey.toLowerCase();
-    userData = userData.filter((user) =>
-      Object.keys(user).some((key) =>
-        String(user[key]).toLowerCase().includes(fk),
-      ),
+    const q = props.filterKey.toLowerCase();
+    data = data.filter((u) =>
+      Object.values(u).some((v) => String(v).toLowerCase().includes(q)),
     );
   }
-
   if (sortKey.value) {
     const key = sortKey.value;
     const order = sortOrders.value[key];
-    userData = userData.slice().sort((a, b) => {
-      const x = a[key];
-      const y = b[key];
-      return (x === y ? 0 : x > y ? 1 : -1) * order;
-    });
+    data = [...data].sort((a, b) =>
+      (a[key] > b[key] ? 1 : -1) * order,
+    );
   }
-
-  return userData;
+  return data;
 });
 
 function sortBy(key) {
@@ -88,7 +119,9 @@ function sortBy(key) {
   sortOrders.value[key] *= -1;
 }
 
-// pagination logic
+const currentPage = ref(1);
+const pageSize = ref(10);
+
 const totalPages = computed(() =>
   Math.ceil(filteredData.value.length / pageSize.value),
 );
@@ -97,106 +130,6 @@ const paginatedData = computed(() => {
   const start = (currentPage.value - 1) * pageSize.value;
   return filteredData.value.slice(start, start + pageSize.value);
 });
-
-// reset page when filtering
-watch(
-  () => props.filterKey,
-  () => {
-    currentPage.value = 1;
-  },
-);
-
-watch(pageSize, () => {
-  currentPage.value = 1;
-});
 </script>
-
-<template>
-  <div class="people-table">
-    <div v-if="filteredData">
-      <table v-if="filteredData.length" class="center">
-        <thead>
-          <tr>
-            <th
-              v-for="key in columns"
-              :key="key"
-              @click="sortBy(key)"
-              :class="{ active: sortKey == key }"
-            >
-              {{ capitalFirstLetter(key) }}
-              <span
-                class="arrow"
-                :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"
-              ></span>
-            </th>
-          </tr>
-        </thead>
-
-        <tbody>
-          <tr v-for="entry in paginatedData" :key="entry.name">
-            <td v-for="key in columns" :key="key">
-              <!-- NAME → person popup -->
-              <template v-if="key === 'name'">
-                <button
-                  class="popup-link"
-                  @click="$emit('toggle-person', entry)"
-                >
-                  <span v-html="highlight(entry.name, filterKey)"></span>
-                </button>
-              </template>
-
-              <!-- HOMEWORLD → planet popup -->
-              <template v-else-if="key === 'homeworld'">
-                <button
-                  v-if="
-                    formatOutput(key, entry[key]).name !== 'unknown' &&
-                    formatOutput(key, entry[key]).name !== 'Loading'
-                  "
-                  class="popup-link"
-                  @click="$emit('toggle-planet', formatOutput(key, entry[key]))"
-                >
-                  {{ formatOutput(key, entry[key]).name }}
-                </button>
-
-                <p v-else>
-                  {{ capitalFirstLetter(formatOutput(key, entry[key]).name) }}
-                </p>
-              </template>
-
-              <!-- OTHER COLUMNS -->
-              <template v-else>
-                <span
-                  v-html="highlight(formatOutput(key, entry[key]), filterKey)"
-                ></span>
-              </template>
-            </td>
-          </tr>
-        </tbody>
-      </table>
-
-      <div v-else>
-        <div v-if="ready" id="user-not-found">
-          <img
-            alt="Jedi Mind Trick Image"
-            src="../../assets/mind-trick.gif"
-            width="400"
-          />
-          <p>These are not the users you are looking for</p>
-        </div>
-        <div v-else class="fade-in"></div>
-      </div>
-
-      <Pagination
-        :currentPage="currentPage"
-        :totalPages="totalPages"
-        :pageSize="pageSize"
-        @update:currentPage="currentPage = $event"
-        @update:pageSize="pageSize = $event"
-      />
-
-      <ScrollToTop />
-    </div>
-  </div>
-</template>
 
 <style src="./style.css"></style>

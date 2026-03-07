@@ -7,8 +7,9 @@
       <SearchBox v-model="searchQuery" />
     </form>
 
-    <div class="table-switcher" v-if="ready">
+    <div class="table-switcher" :class="activeTable" v-if="ready">
       <button
+        type="button"
         :class="{ active: activeTable === 'people' }"
         @click="activeTable = 'people'"
       >
@@ -16,6 +17,7 @@
       </button>
 
       <button
+        type="button"
         :class="{ active: activeTable === 'planets' }"
         @click="activeTable = 'planets'"
       >
@@ -35,13 +37,12 @@
       :filter-key="searchQuery"
     />
 
-    <!-- PLANETS TABLE -->
     <PlanetsTable
       v-if="activeTable === 'planets' && ready"
       :planets="planets"
       @toggle-planet="togglePlanetPopup"
     />
-    
+
     <PlanetPopup
       v-if="showPlanetPopup"
       :planet="planet"
@@ -132,9 +133,7 @@ async function loadPlanets() {
 
 onMounted(async () => {
   document.title = "Joe O'Regan SWAPI App";
-
   await Promise.all([loadPeople(), loadPlanets()]);
-
   ready.value = true;
 });
 </script>

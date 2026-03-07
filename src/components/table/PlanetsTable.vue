@@ -1,6 +1,6 @@
 <template>
   <div class="planets-table">
-    <table class="sw-table">
+    <table class="center">
       <thead>
         <tr>
           <th
@@ -10,10 +10,7 @@
             :class="{ active: sortKey === col }"
           >
             {{ capital(col) }}
-            <span
-              class="arrow"
-              :class="sortOrders[col] > 0 ? 'asc' : 'dsc'"
-            ></span>
+            <span class="arrow" :class="sortOrders[col] > 0 ? 'asc' : 'dsc'"></span>
           </th>
         </tr>
       </thead>
@@ -21,21 +18,10 @@
       <tbody>
         <tr v-for="planet in paginatedPlanets" :key="planet.name">
           <td>
-            <button
-              class="popup-link"
-              @click="
-                $emit('toggle-planet', {
-                  name: planet.name,
-                  climate: planet.climate,
-                  population: planet.population,
-                  diameter: planet.diameter,
-                })
-              "
-            >
+            <button class="popup-link" @click="$emit('toggle-planet', planet)">
               {{ planet.name }}
             </button>
           </td>
-
           <td>{{ planet.climate }}</td>
           <td>{{ planet.population }}</td>
           <td>{{ planet.diameter }}</td>
@@ -45,12 +31,8 @@
 
     <div class="pagination">
       <button :disabled="currentPage === 1" @click="currentPage--">Prev</button>
-
       <span>Page {{ currentPage }} / {{ totalPages }}</span>
-
-      <button :disabled="currentPage === totalPages" @click="currentPage++">
-        Next
-      </button>
+      <button :disabled="currentPage === totalPages" @click="currentPage++">Next</button>
 
       <select v-model="pageSize">
         <option :value="5">5</option>
@@ -64,8 +46,6 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 
-const emit = defineEmits(["toggle-planet"]);
-
 const props = defineProps({
   planets: Array,
 });
@@ -73,7 +53,7 @@ const props = defineProps({
 const columns = ["name", "climate", "population", "diameter"];
 
 const sortKey = ref("");
-const sortOrders = ref(columns.reduce((o, key) => ((o[key] = 1), o), {}));
+const sortOrders = ref(columns.reduce((o, k) => ((o[k] = 1), o), {}));
 
 function capital(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -82,23 +62,15 @@ function capital(str) {
 function sortBy(key) {
   sortKey.value = key;
   sortOrders.value[key] *= -1;
-  currentPage.value = 1;
 }
 
 const sortedPlanets = computed(() => {
   let data = [...props.planets];
-
   if (sortKey.value) {
     const key = sortKey.value;
     const order = sortOrders.value[key];
-
-    data.sort((a, b) => {
-      const x = a[key];
-      const y = b[key];
-      return (x === y ? 0 : x > y ? 1 : -1) * order;
-    });
+    data.sort((a, b) => (a[key] > b[key] ? 1 : -1) * order);
   }
-
   return data;
 });
 
@@ -114,9 +86,7 @@ const paginatedPlanets = computed(() => {
   return sortedPlanets.value.slice(start, start + pageSize.value);
 });
 
-watch(pageSize, () => {
-  currentPage.value = 1;
-});
+watch(pageSize, () => (currentPage.value = 1));
 </script>
 
 <style src="./style.css"></style>

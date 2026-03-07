@@ -85,13 +85,13 @@ mark {
 /* Even rows keep the red theme */
 .people-table tr:nth-child(even) {
   background: #f15656;
-  color: #000; /* black text */
+  color: #000;
 }
 
 /* Odd rows become light grey */
 .people-table tr:nth-child(odd) {
   background: #e6e6e6;
-  color: #000; /* black text */
+  color: #000;
 }
 
 .people-table mark {
@@ -113,24 +113,25 @@ mark {
   color: #000;
 }
 
-/* Even rows keep the yellow-tinted theme */
+/* Even rows keep the yellow theme */
 .planets-table tr:nth-child(even) {
   background: #fbfb78;
-  color: #000; /* black text */
+  color: #000;
 }
 
 /* Odd rows become light grey */
 .planets-table tr:nth-child(odd) {
   background: #e6e6e6;
-  color: #000; /* black text */
+  color: #000;
 }
+
 .planets-table mark {
   background: #ffea61;
   color: #000;
 }
 
 /* ============================================================
-   PLANETS TABLE BUTTONS (pagination)
+   PLANETS TABLE PAGINATION
    ============================================================ */
 
 .planets-table .pagination button {
@@ -143,4 +144,76 @@ mark {
 
 .planets-table .pagination button:hover {
   background: #ffea61;
+}
+
+/* ============================================================
+   TABLE SWITCHER BUTTONS — MATCH ACTIVE TABLE THEME
+   ============================================================ */
+
+.table-switcher {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+/* Base button shape only */
+.table-switcher button {
+  padding: 6px 14px;
+  border-radius: 4px;
+  border: none;
+  cursor: pointer;
+  font-weight: bold;
+  transition: 0.2s;
+}
+
+/* ============================================================
+   PEOPLE TABLE ACTIVE → ALL BUTTONS RED
+   ============================================================ */
+
+.table-switcher.people > button {
+  background: #cc0000; /* lighter red */
+  color: #fff;
+}
+
+.table-switcher.people > button.active {
+  background: #990000; /* darker red */
+  color: #fff;
+}
+
+/* ============================================================
+   PLANETS TABLE ACTIVE → ALL BUTTONS YELLOW
+   ============================================================ */
+
+.table-switcher.planets > button {
+  background: #ffdd33; /* lighter yellow */
+  color: #000;
+}
+
+.table-switcher.planets > button.active {
+  background: #ffc909; /* darker yellow */
+  color: #000;
+}
+
+/* Hover effect */
+.table-switcher button:hover {
+  opacity: 0.85;
+}
+
+
+
+/* PEOPLE ACTIVE BUTTON */
+.table-switcher.people button.active {
+  background: #990000;
+  color: #fff;
+}
+
+/* PLANETS ACTIVE BUTTON */
+.table-switcher.planets button.active {
+  background: #ffc909;
+  color: #000;
+}
+
+/* Hover */
+.table-switcher button:hover {
+  opacity: 0.85;
 }
