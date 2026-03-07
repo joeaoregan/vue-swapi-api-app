@@ -217,3 +217,35 @@ mark {
 .table-switcher button:hover {
   opacity: 0.85;
 }
+/* ============================================================
+   SKIP TO TOP BUTTON — MATCH ACTIVE TABLE THEME
+   ============================================================ */
+
+.skip-top {
+  position: fixed;
+  bottom: 25px;
+  right: 25px;
+  padding: 10px 16px;
+  border: none;
+  border-radius: 6px;
+  font-weight: bold;
+  cursor: pointer;
+  z-index: 999;
+  transition: 0.2s;
+}
+
+/* PEOPLE THEME */
+.table-switcher.people ~ .skip-top {
+  background: #990000;
+  color: #fff;
+}
+
+/* PLANETS THEME */
+.table-switcher.planets ~ .skip-top {
+  background: #ffc909;
+  color: #000;
+}
+
+.skip-top:hover {
+  opacity: 0.85;
+}

@@ -55,6 +55,8 @@
       @toggle-person="togglePersonPopup"
     />
   </div>
+
+  <button class="skip-top" @click="scrollToTop">↑ Top</button>
 </template>
 
 <script setup>
@@ -136,4 +138,8 @@ onMounted(async () => {
   await Promise.all([loadPeople(), loadPlanets()]);
   ready.value = true;
 });
+
+function scrollToTop() {
+  window.scrollTo({ top: 0, behavior: "smooth" });
+}
 </script>
