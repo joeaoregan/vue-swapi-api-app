@@ -105,3 +105,8 @@ NotFound.vue
 
 ([Swapi.tech](https://swapi.tech)) API data for comparison:
 [People](https://swapi.tech/api/people/?page=1&format=json) and [Planet](https://swapi.tech/api/planets/1/?page=1&format=json) JSON data
+
+---
+
+*This project is not affiliated with or endorsed by Lucasfilm Ltd.\
+Star Wars and all related properties are trademarks of Lucasfilm Ltd.*
