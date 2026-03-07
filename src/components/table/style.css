@@ -88,3 +88,10 @@ tr:nth-child(odd) {
 .pagination select {
   padding: 4px 8px;
 }
+
+/* Minimal style for active page buttons */
+.pagination button.active {
+  background-color: #990000;
+  color: white;
+  font-weight: bold;
+}

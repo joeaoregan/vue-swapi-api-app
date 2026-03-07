@@ -54,7 +54,7 @@ const filteredData = computed(() => {
     userData = userData.filter((user) =>
       Object.keys(user).some((key) =>
         String(user[key]).toLowerCase().includes(fk),
-      )
+      ),
     );
   }
 
@@ -78,7 +78,7 @@ function sortBy(key) {
 
 // pagination logic
 const totalPages = computed(() =>
-  Math.ceil(filteredData.value.length / pageSize.value)
+  Math.ceil(filteredData.value.length / pageSize.value),
 );
 
 const paginatedData = computed(() => {
@@ -94,10 +94,27 @@ function prevPage() {
   if (currentPage.value > 1) currentPage.value--;
 }
 
-// reset page when filtering
-watch(() => props.filterKey, () => {
-  currentPage.value = 1;
+const pageNumbers = computed(() => {
+  const pages = [];
+  for (let i = 1; i <= totalPages.value; i++) {
+    pages.push(i);
+  }
+  return pages;
 });
+
+function goToPage(page) {
+  if (page >= 1 && page <= totalPages.value) {
+    currentPage.value = page;
+  }
+}
+
+// reset page when filtering
+watch(
+  () => props.filterKey,
+  () => {
+    currentPage.value = 1;
+  },
+);
 
 watch(pageSize, () => {
   currentPage.value = 1;
@@ -172,6 +189,15 @@ watch(pageSize, () => {
       <div class="pagination">
         <button @click="prevPage" :disabled="currentPage === 1">
           Previous
+        </button>
+
+        <button
+          v-for="page in pageNumbers"
+          :key="page"
+          @click="goToPage(page)"
+          :class="{ active: currentPage === page }"
+        >
+          {{ page }}
         </button>
 
         <span>Page {{ currentPage }} of {{ totalPages }}</span>
