@@ -62,39 +62,13 @@ tr:nth-child(odd) {
   padding: 20px;
 }
 
-.button {
+table .button {
   background-color: #990000;
   color: #fff;
   width: 95%;
   padding: 2px;
   font-weight: bold;
   cursor: pointer;
-}
-
-/* Pagination styles */
-.pagination {
-  margin-top: 20px;
-  display: flex;
-  justify-content: center;
-  gap: 12px;
-  align-items: center;
-}
-
-.pagination button {
-  padding: 6px 12px;
-  cursor: pointer;
-}
-
-.pagination select {
-  padding: 4px 8px;
-}
-
-/* ellipses */
-.pagination button[disabled] {
-  cursor: default;
-  background: transparent;
-  color: #555;
-  font-weight: normal;
 }
 
 /* Sticky table header */

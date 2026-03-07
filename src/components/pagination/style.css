@@ -1,3 +1,5 @@
+/* Pagination styles */
+
 .pagination {
   position: sticky;
   bottom: 0;
@@ -9,8 +11,16 @@
   justify-content: center;
   gap: 12px;
   align-items: center;
-  transition: box-shadow 0.3s ease;
   transition: opacity 0.3s ease, bottom 0.3s ease;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.pagination select {
+  padding: 4px 8px;
 }
 
 button.active {
@@ -19,3 +29,9 @@ button.active {
   font-weight: bold;
 }
 
+button[disabled] {
+  cursor: default;
+  background: transparent;
+  color: #555;
+  font-weight: normal;
+}
