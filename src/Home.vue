@@ -11,8 +11,8 @@
 
     <UserTable
       v-else
-      @toggle-popup="togglePopup"
-      @togglePersonPopup="togglePersonPopup"
+      @toggle-planet="togglePlanetPopup"
+      @toggle-person="togglePersonPopup"
       :planets="planets"
       :users="people"
       :columns="gridColumns"
@@ -21,18 +21,15 @@
     />
 
     <PlanetPopup
-      v-if="displayPopup"
-      @toggle-popup="togglePopup"
-      :name="planet.name"
-      :diameter="planet.diameter"
-      :climate="planet.climate"
-      :population="planet.population"
+      v-if="showPlanetPopup"
+      :planet="planet"
+      @toggle-planet="togglePlanetPopup"
     />
 
     <PersonPopup
       v-if="showPersonPopup"
       :person="selectedPerson"
-      @toggle-popup="togglePersonPopup"
+      @toggle-person="togglePersonPopup"
     />
   </div>
 </template>
@@ -64,7 +61,7 @@ export default {
   data() {
     return {
       ready: false,
-      displayPopup: false,
+      showPlanetPopup: false,
       showPersonPopup: false,
       imgAlt: "Page logo image",
       people: [],
@@ -76,16 +73,11 @@ export default {
   },
 
   methods: {
-    togglePopup(planet) {
+    togglePlanetPopup(planet) {
       if (planet) {
-        this.planet = {
-          name: planet.name,
-          diameter: planet.diameter,
-          climate: planet.climate,
-          population: planet.population,
-        };
+        this.planet = { ...planet };
       }
-      this.displayPopup = !this.displayPopup;
+      this.showPlanetPopup = !this.showPlanetPopup;
     },
 
     togglePersonPopup(person) {
@@ -104,7 +96,6 @@ export default {
 
     async loadPeople() {
       let nextUrl = "https://swapi.dev/api/people/";
-
       while (nextUrl) {
         const response = await axios.get(nextUrl);
         this.people.push(...response.data.results);
@@ -117,7 +108,6 @@ export default {
 
     async loadPlanets() {
       let nextUrl = "https://swapi.dev/api/planets/";
-
       while (nextUrl) {
         const response = await axios.get(nextUrl);
         this.planets.push(...response.data.results);
@@ -131,9 +121,7 @@ export default {
 
   async mounted() {
     document.title = "Joe O'Regan SWAPI App";
-
     await Promise.all([this.loadPeople(), this.loadPlanets()]);
-
     this.ready = true;
     console.log("Ready:", this.ready);
   },

@@ -1,5 +1,5 @@
 <template>
-  <div class="popup" @click.self="$emit('toggle-popup')">
+  <div class="popup" @click.self="$emit('toggle-person')">
     <transition name="popup-fade">
       <div class="popup-inner">
         <h2>{{ person.name }}</h2>
@@ -12,7 +12,7 @@
           <li><strong>Homeworld:</strong> {{ person.homeworldName }}</li>
         </ul>
 
-        <button class="button" @click="$emit('toggle-popup')">Close</button>
+        <button class="button" @click="$emit('toggle-person')">Close</button>
       </div>
     </transition>
   </div>

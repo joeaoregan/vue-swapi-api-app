@@ -17,7 +17,7 @@ const sortOrders = ref(props.columns.reduce((o, key) => ((o[key] = 1), o), {}));
 
 // pagination
 const currentPage = ref(1);
-const pageSize = ref(10); // default rows per page
+const pageSize = ref(10);
 
 function capitalFirstLetter(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -138,18 +138,18 @@ watch(pageSize, () => {
         <tbody>
           <tr v-for="entry in paginatedData" :key="entry.name">
             <td v-for="key in columns" :key="key">
-              <!-- NAME: opens person popup -->
+              <!-- NAME → person popup -->
               <template v-if="key === 'name'">
                 <button
                   class="button"
-                  @click="$emit('togglePersonPopup', entry)"
+                  @click="$emit('toggle-person', entry)"
                   :title="`View details for ${entry.name}`"
                 >
                   <span v-html="highlight(entry.name, filterKey)"></span>
                 </button>
               </template>
 
-              <!-- HOMEWORLD: opens planet popup -->
+              <!-- HOMEWORLD → planet popup -->
               <template v-else-if="key === 'homeworld'">
                 <button
                   v-if="
@@ -157,7 +157,7 @@ watch(pageSize, () => {
                     formatOutput(key, entry[key]).name !== 'Loading'
                   "
                   class="button"
-                  @click="$emit('toggle-popup', formatOutput(key, entry[key]))"
+                  @click="$emit('toggle-planet', formatOutput(key, entry[key]))"
                   :title="`Click For ${
                     formatOutput(key, entry[key]).name
                   } Info`"
@@ -170,7 +170,7 @@ watch(pageSize, () => {
                 </p>
               </template>
 
-              <!-- OTHER COLUMNS: highlighted text -->
+              <!-- OTHER COLUMNS -->
               <template v-else>
                 <span
                   v-html="highlight(formatOutput(key, entry[key]), filterKey)"
