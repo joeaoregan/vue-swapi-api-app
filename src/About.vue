@@ -1,15 +1,9 @@
 <template>
   <div>
-    <ScrollingText></ScrollingText>
+    <ScrollingText />
   </div>
 </template>
 
-<script>
-import ScrollingText from "./components/scrolling/ScrollingText.vue";
-export default {
-  name: "AboutPage",
-  components: {
-    ScrollingText,
-  },
-};
+<script setup>
+import ScrollingText from "@/components/scrolling/ScrollingText.vue";
 </script>
