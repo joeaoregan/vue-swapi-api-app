@@ -1,16 +1,33 @@
-# joe-oregan-front-end-dev-app
+# Vue.js SWAPI (The Star Wars API) Project
+## joe-oregan-front-end-dev-app
 
-Try it: [Render App](https://vuejs-frontenddemo.onrender.com/ "See App on Render")
+[Vue.js](https://vuejs.org/) project using [SWAPI ~~swapi.dev~~ ~~swapi.tech~~ swapi.dev](https://swapi.dev/)
+- Depends which one is working whenever I add updates
+- SWAPI, The Star Wars API
 
-- [Vue.js](https://vuejs.org/) project using [SWAPI ~~swapi.dev~~ ~~swapi.tech~~ swapi.dev (again)](https://swapi.dev/) (SWAPI, The Star Wars API)
-- Uses Axios to get [People](https://swapi.dev/api/people/) and [Planet](https://swapi.dev/api/planets/)
-- Fetches all pages of People and Planets using the next pagination links
-- Loads both datasets in parallel using Promise.all()
-- Displays combined results in a sortable, filterable table
-- Several pages of JSON data are combined to create the data table
-- Full pagination via next URLs
-- Star Wars–themed loading screen while data is fetched
-- Clicking the home world link shows information about the planet
+## Live Demo
+
+[Render App](https://vuejs-frontenddemo.onrender.com/ "See App on Render")
+
+## Installation & Running
+
+To run the project locally:
+
+```
+npm install
+npm run serve
+```
+
+## Features
+
+- Fetches all [People](https://swapi.dev/api/people/) and [Planet](https://swapi.dev/api/planets/) from SWAPI
+- Sortable table columns
+- Live search filter
+- Clickable homeworld button opens planet popup
+- Formatted timestamps (created / edited)
+- Star Wars–themed loading screen
+- Component‑scoped CSS
+- Clean project structure
 
 ## Screenshots
 
@@ -29,30 +46,6 @@ Try it: [Render App](https://vuejs-frontenddemo.onrender.com/ "See App on Render
 ![Vue.js App 4](https://raw.githubusercontent.com/joeaoregan/vue-front-end-dev-app/master/screenshots/screenshot4.png "Vue.js App 4 - Loading Screen")
 
 ###### Vue.js App 4 - Star Wars-themed loading screen
-
-## Project setup
-
-```
-npm install
-```
-
-### Compiles and hot-reloads for development
-
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-
-```
-npm run build
-```
-
-### Lints and fixes files
-
-```
-npm run lint
-```
 
 ### Customize configuration
 
