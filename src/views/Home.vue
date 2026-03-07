@@ -39,8 +39,9 @@
     <PlanetsTable
       v-if="activeTable === 'planets' && ready"
       :planets="planets"
+      @toggle-planet="togglePlanetPopup"
     />
-
+    
     <PlanetPopup
       v-if="showPlanetPopup"
       :planet="planet"

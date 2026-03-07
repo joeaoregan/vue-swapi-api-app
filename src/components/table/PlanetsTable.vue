@@ -11,14 +11,33 @@
             :class="{ active: sortKey === col }"
           >
             {{ capital(col) }}
-            <span class="arrow" :class="sortOrders[col] > 0 ? 'asc' : 'dsc'"></span>
+            <span
+              class="arrow"
+              :class="sortOrders[col] > 0 ? 'asc' : 'dsc'"
+            ></span>
           </th>
         </tr>
       </thead>
 
       <tbody>
         <tr v-for="planet in paginatedPlanets" :key="planet.name">
-          <td>{{ planet.name }}</td>
+          <td>
+            <button
+              class="button"
+              @click="
+                $emit('toggle-planet', {
+                  name: planet.name,
+                  climate: planet.climate,
+                  population: planet.population,
+                  diameter: planet.diameter,
+                })
+              "
+              :title="`View details for ${planet.name}`"
+            >
+              {{ planet.name }}
+            </button>
+          </td>
+
           <td>{{ planet.climate }}</td>
           <td>{{ planet.population }}</td>
           <td>{{ planet.diameter }}</td>
@@ -28,19 +47,11 @@
 
     <!-- PAGINATION -->
     <div class="pagination">
-      <button
-        :disabled="currentPage === 1"
-        @click="currentPage--"
-      >
-        Prev
-      </button>
+      <button :disabled="currentPage === 1" @click="currentPage--">Prev</button>
 
       <span>Page {{ currentPage }} / {{ totalPages }}</span>
 
-      <button
-        :disabled="currentPage === totalPages"
-        @click="currentPage++"
-      >
+      <button :disabled="currentPage === totalPages" @click="currentPage++">
         Next
       </button>
 
@@ -56,8 +67,10 @@
 <script setup>
 import { ref, computed, watch } from "vue";
 
+const emit = defineEmits(["toggle-planet"]);
+
 const props = defineProps({
-  planets: Array
+  planets: Array,
 });
 
 // columns for sorting
@@ -65,9 +78,7 @@ const columns = ["name", "climate", "population", "diameter"];
 
 // sorting state
 const sortKey = ref("");
-const sortOrders = ref(
-  columns.reduce((o, key) => ((o[key] = 1), o), {})
-);
+const sortOrders = ref(columns.reduce((o, key) => ((o[key] = 1), o), {}));
 
 function capital(str) {
   return str.charAt(0).toUpperCase() + str.slice(1);
@@ -101,7 +112,7 @@ const currentPage = ref(1);
 const pageSize = ref(10);
 
 const totalPages = computed(() =>
-  Math.ceil(sortedPlanets.value.length / pageSize.value)
+  Math.ceil(sortedPlanets.value.length / pageSize.value),
 );
 
 const paginatedPlanets = computed(() => {
@@ -184,5 +195,18 @@ watch(pageSize, () => {
   color: #ffc909;
   border: 1px solid #444;
   border-radius: 4px;
+}
+
+.button {
+  background: none;
+  border: none;
+  color: #ffc909;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+}
+
+.button:hover {
+  color: #ffea61;
 }
 </style>
