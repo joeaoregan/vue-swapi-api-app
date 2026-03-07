@@ -2,14 +2,16 @@
   <div class="popup">
     <div v-if="display" class="popup-inner">
       <h1>{{ name }}</h1>
+
       <p>
-        <span><strong>Diameter:</strong> {{ formatStringOrNumber(diameter) }}</span><br />
+        <strong>Diameter:</strong> {{ formatStringOrNumber(diameter) }}<br />
         <strong>Climate:</strong> {{ climate }}<br />
         <strong>Population:</strong> {{ formatStringOrNumber(population) }}
       </p>
+
       <button
         class="popup-close button"
-        @click="$emit('togglePopup', 'close button pressed')"
+        @click="emit('togglePopup', 'close button pressed')"
       >
         Close
       </button>
@@ -17,31 +19,47 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "PlanetPopup",
-  props: {
-    name: String,
-    diameter: String,
-    climate: String,
-    population: String,
-  },
-  data() {
-    return {
-      display: true,
-    };
-  },
-  methods: {
-      capitalFirstLetter(word) {
-          return word.charAt(0).toUpperCase() + word.slice(1);
-      },
-      formatStringOrNumber(string) {
-          return parseInt(string) ? parseInt(string).toLocaleString() : this.capitalFirstLetter(string)
-      }
+<script setup>
+import { ref, onMounted, onUnmounted } from "vue";
+
+const props = defineProps({
+  name: String,
+  diameter: String,
+  climate: String,
+  population: String,
+});
+
+const emit = defineEmits(["togglePopup"]);
+
+const display = ref(true);
+
+function capitalFirstLetter(word) {
+  if (!word) return "";
+  return word.charAt(0).toUpperCase() + word.slice(1);
+}
+
+function formatStringOrNumber(value) {
+  if (!value) return "";
+  return parseInt(value)
+    ? parseInt(value).toLocaleString()
+    : capitalFirstLetter(value);
+}
+
+function handleKeydown(event) {
+  if (event.key === "Escape") {
+    emit("togglePopup", "escape pressed");
   }
-};
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeydown);
+});
 </script>
 
 <style scoped>
-@import './style.css';
+@import "./style.css";
 </style>
