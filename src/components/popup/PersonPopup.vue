@@ -1,26 +1,42 @@
 <template>
-  <div class="popup" @click.self="$emit('toggle-person')">
+  <div class="popup" @click.self="emit('toggle-person')">
     <transition name="popup-fade">
       <div class="popup-inner">
         <h2>{{ person.name }}</h2>
 
-        <ul>
-          <li><strong>Height:</strong> {{ person.height }}</li>
-          <li><strong>Mass:</strong> {{ person.mass }}</li>
-          <li><strong>Birth Year:</strong> {{ person.birth_year }}</li>
-          <li><strong>Gender:</strong> {{ person.gender }}</li>
-          <li><strong>Homeworld:</strong> {{ person.homeworldName }}</li>
-        </ul>
+        <p><strong>Height:</strong> {{ person.height }}</p>
+        <p><strong>Mass:</strong> {{ person.mass }}</p>
+        <p><strong>Birth Year:</strong> {{ person.birth_year }}</p>
+        <p><strong>Gender:</strong> {{ person.gender }}</p>
+        <p><strong>Homeworld:</strong> {{ person.homeworldName }}</p>
 
-        <button class="button" @click="$emit('toggle-person')">Close</button>
+        <button class="button" @click="emit('toggle-person')">Close</button>
       </div>
     </transition>
   </div>
 </template>
 
 <script setup>
+import { onMounted, onUnmounted } from "vue";
+
 const props = defineProps({
   person: Object,
+});
+
+const emit = defineEmits(["toggle-person"]);
+
+function handleKeydown(event) {
+  if (event.key === "Escape") {
+    emit("toggle-person");
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeydown);
 });
 </script>
 
