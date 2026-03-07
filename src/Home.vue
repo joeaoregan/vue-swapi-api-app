@@ -20,14 +20,12 @@
       :ready="ready"
     />
 
-    <!-- PLANET POPUP -->
     <PlanetPopup
       v-if="showPlanetPopup"
       :planet="planet"
       @toggle-planet="togglePlanetPopup"
     />
 
-    <!-- PERSON POPUP -->
     <PersonPopup
       v-if="showPersonPopup"
       :person="selectedPerson"
@@ -46,9 +44,6 @@ import LoadingScreen from "@/components/loading/LoadingScreen.vue";
 import PlanetPopup from "@/components/popup/PlanetPopup.vue";
 import PersonPopup from "@/components/popup/PersonPopup.vue";
 
-/* ---------------------------------------------
-   STATE
----------------------------------------------- */
 const ready = ref(false);
 const searchQuery = ref("");
 
@@ -72,9 +67,6 @@ const gridColumns = [
   "homeworld",
 ];
 
-/* ---------------------------------------------
-   POPUP HANDLERS
----------------------------------------------- */
 function togglePlanetPopup(planetData) {
   if (planetData) {
     planet.value = { ...planetData };
@@ -96,9 +88,6 @@ function togglePersonPopup(personData) {
   showPersonPopup.value = !showPersonPopup.value;
 }
 
-/* ---------------------------------------------
-   DATA LOADING
----------------------------------------------- */
 async function loadPeople() {
   let nextUrl = "https://swapi.dev/api/people/";
   while (nextUrl) {
@@ -117,9 +106,6 @@ async function loadPlanets() {
   }
 }
 
-/* ---------------------------------------------
-   MOUNTED
----------------------------------------------- */
 onMounted(async () => {
   document.title = "Joe O'Regan SWAPI App";
 
