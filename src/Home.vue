@@ -4,7 +4,23 @@
 
     <form v-show="people != null" id="search">
       Search <s>Your Feelings</s> Users:
-      <input name="query" v-model="searchQuery" />
+
+      <div class="search-wrapper">
+        <input
+          name="query"
+          v-model="searchQuery"
+          placeholder="Search users..."
+        />
+
+        <button
+          v-if="searchQuery"
+          class="clear-btn"
+          @click.prevent="searchQuery = ''"
+          aria-label="Clear search"
+        >
+          ✕
+        </button>
+      </div>
     </form>
 
     <LoadingScreen v-if="!ready" />
@@ -109,3 +125,5 @@ export default {
   },
 };
 </script>
+
+<style scoped src="./styles/home.css" />
