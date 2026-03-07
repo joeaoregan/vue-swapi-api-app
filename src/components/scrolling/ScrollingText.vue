@@ -32,12 +32,8 @@
   </div>
 </template>
 
-<script>
-export default {
-  name: "ScrollingText",
-};
+<script setup>
+// No logic needed — purely presentational
 </script>
 
-<style>
-@import "./style.css";
-</style>
+<style src="./style.css"></style>
