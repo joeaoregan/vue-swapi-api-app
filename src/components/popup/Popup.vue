@@ -1,21 +1,23 @@
 <template>
   <div class="popup" ref="overlay" @click="handleClickOutside">
-    <div v-if="display" class="popup-inner">
-      <h1>{{ name }}</h1>
+    <transition name="popup-fade">
+      <div v-if="display" class="popup-inner">
+        <h1>{{ name }}</h1>
 
-      <p>
-        <strong>Diameter:</strong> {{ formatStringOrNumber(diameter) }}<br />
-        <strong>Climate:</strong> {{ climate }}<br />
-        <strong>Population:</strong> {{ formatStringOrNumber(population) }}
-      </p>
+        <p>
+          <strong>Diameter:</strong> {{ formatStringOrNumber(diameter) }}<br />
+          <strong>Climate:</strong> {{ climate }}<br />
+          <strong>Population:</strong> {{ formatStringOrNumber(population) }}
+        </p>
 
-      <button
-        class="popup-close button"
-        @click="emit('togglePopup', 'close button pressed')"
-      >
-        Close
-      </button>
-    </div>
+        <button
+          class="popup-close button"
+          @click="emit('togglePopup', 'close button pressed')"
+        >
+          Close
+        </button>
+      </div>
+    </transition>
   </div>
 </template>
 
