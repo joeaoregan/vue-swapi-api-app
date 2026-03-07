@@ -1,72 +1,90 @@
 table {
-    border: 2px solid #990000;
-    border-radius: 3px;
-    background-color: #fff;
-  }
-  
-  th {
-    background-color: #990000;
-    color: rgba(255, 255, 255, 0.66);
-    cursor: pointer;
-    user-select: none;
-  }
-  
-  th,
-  td {
-    min-width: 120px;
-    padding: 5px 20px;
-  }
-  
-  th.active {
-    color: #fff;
-  }
-  
-  th.active .arrow {
-    opacity: 1;
-  }
+  border: 2px solid #990000;
+  border-radius: 3px;
+  background-color: #fff;
+}
 
-  tr:nth-child(even) {    
-    background-color: #f9f9f9;
-  }
-  tr:nth-child(odd) {    
-    background-color: #d9d9d9;
-  }
-  
-  .arrow {
-    display: inline-block;
-    vertical-align: middle;
-    width: 0;
-    height: 0;
-    margin-left: 5px;
-    opacity: 0.66;
-  }
-  
-  .arrow.asc {
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-bottom: 4px solid #fff;
-  }
-  
-  .arrow.dsc {
-    border-left: 4px solid transparent;
-    border-right: 4px solid transparent;
-    border-top: 4px solid #fff;
-  }
+th {
+  background-color: #990000;
+  color: rgba(255, 255, 255, 0.66);
+  cursor: pointer;
+  user-select: none;
+}
 
-  .center {
-    margin-left: auto;
-    margin-right: auto;
-  }
+th,
+td {
+  min-width: 120px;
+  padding: 5px 20px;
+}
 
-  #user-not-found {
-    padding: 20px;
-  }
-  
-  .button {
-    background-color: #990000;
-    color: #fff;
-    width: 95%;
-    padding: 2px;
-    font-weight: bold;
-    cursor: pointer;
-  }
+th.active {
+  color: #fff;
+}
+
+th.active .arrow {
+  opacity: 1;
+}
+
+tr:nth-child(even) {
+  background-color: #f9f9f9;
+}
+tr:nth-child(odd) {
+  background-color: #d9d9d9;
+}
+
+.arrow {
+  display: inline-block;
+  vertical-align: middle;
+  width: 0;
+  height: 0;
+  margin-left: 5px;
+  opacity: 0.66;
+}
+
+.arrow.asc {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-bottom: 4px solid #fff;
+}
+
+.arrow.dsc {
+  border-left: 4px solid transparent;
+  border-right: 4px solid transparent;
+  border-top: 4px solid #fff;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+}
+
+#user-not-found {
+  padding: 20px;
+}
+
+.button {
+  background-color: #990000;
+  color: #fff;
+  width: 95%;
+  padding: 2px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+/* Pagination styles */
+.pagination {
+  margin-top: 20px;
+  display: flex;
+  justify-content: center;
+  gap: 12px;
+  align-items: center;
+}
+
+.pagination button {
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.pagination select {
+  padding: 4px 8px;
+}

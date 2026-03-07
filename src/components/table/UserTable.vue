@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed } from "vue";
+import { ref, computed, watch } from "vue";
 
 const props = defineProps({
   planets: Array,
@@ -9,12 +9,15 @@ const props = defineProps({
   ready: Boolean,
 });
 
-// sorting state
+// sorting
 const sortKey = ref("");
 const sortOrders = ref(props.columns.reduce((o, key) => ((o[key] = 1), o), {}));
 
+// pagination
+const currentPage = ref(1);
+const pageSize = ref(10); // default rows per page
+
 function capitalFirstLetter(str) {
-  // helper function to capitalise first letter of string
   return str.charAt(0).toUpperCase() + str.slice(1);
 }
 
@@ -40,7 +43,6 @@ function formatOutput(key, value) {
       timeStyle: "medium",
     }).format(date);
   }
-
   return key === "homeworld" ? getPlanetName(value) : value;
 }
 
@@ -52,7 +54,7 @@ const filteredData = computed(() => {
     userData = userData.filter((user) =>
       Object.keys(user).some((key) =>
         String(user[key]).toLowerCase().includes(fk),
-      ),
+      )
     );
   }
 
@@ -73,6 +75,33 @@ function sortBy(key) {
   sortKey.value = key;
   sortOrders.value[key] *= -1;
 }
+
+// pagination logic
+const totalPages = computed(() =>
+  Math.ceil(filteredData.value.length / pageSize.value)
+);
+
+const paginatedData = computed(() => {
+  const start = (currentPage.value - 1) * pageSize.value;
+  return filteredData.value.slice(start, start + pageSize.value);
+});
+
+function nextPage() {
+  if (currentPage.value < totalPages.value) currentPage.value++;
+}
+
+function prevPage() {
+  if (currentPage.value > 1) currentPage.value--;
+}
+
+// reset page when filtering
+watch(() => props.filterKey, () => {
+  currentPage.value = 1;
+});
+
+watch(pageSize, () => {
+  currentPage.value = 1;
+});
 </script>
 
 <template>
@@ -98,7 +127,7 @@ function sortBy(key) {
         </thead>
 
         <tbody>
-          <tr v-for="entry in filteredData" :key="entry.name">
+          <tr v-for="entry in paginatedData" :key="entry.name">
             <td v-for="key in columns" :key="key">
               <template v-if="key === 'homeworld'">
                 <button
@@ -138,6 +167,25 @@ function sortBy(key) {
           <p>These are not the users you are looking for</p>
         </div>
         <div v-else class="fade-in"></div>
+      </div>
+
+      <div class="pagination">
+        <button @click="prevPage" :disabled="currentPage === 1">
+          Previous
+        </button>
+
+        <span>Page {{ currentPage }} of {{ totalPages }}</span>
+
+        <button @click="nextPage" :disabled="currentPage === totalPages">
+          Next
+        </button>
+
+        <select v-model="pageSize">
+          <option :value="5">5</option>
+          <option :value="10">10</option>
+          <option :value="20">20</option>
+          <option :value="50">50</option>
+        </select>
       </div>
     </div>
   </div>
