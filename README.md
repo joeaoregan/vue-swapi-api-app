@@ -62,31 +62,25 @@ See [Configuration Reference](https://cli.vuejs.org/config/).
 ## Project Structure
 
 ```
+assets/         # Images, icons, logos
 components/
-  loading/
-    LoadingScreen.vue
-    style.css
-  navbar/
-    navbar.vue
-    style.css
-  popup/
-    Popup.vue
-    style.css
-  scrolling/
-    ScrollingText.vue
-    style.css
-  table/
-    style.css
-    UserTable.vue
-router/
-  index.js
-styles/
-  app.css
-About.vue
-App.vue
-Home.vue
-main.js
-NotFound.vue
+  darkmode/     # Dark mode toggle
+  loading/      # Loading screen
+  navbar/       # Navigation bar
+  pagination/   # Pagination component
+  popup/        # Planet + Person popups
+  scroll/       # Scroll-to-top button
+  scrolling/    # Star Wars intro text
+  search/       # SearchBox component
+  table/        # UserTable component
+router/         # Vue Router setup
+styles/         # Main style
+views/
+  About.vue     # Scrolling intro page
+  Home.vue      # Main SWAPI table view
+  NotFound.vue  # 404 page
+App.vue         # Root component
+main.js         # App entry point
 ```
 
 ---
