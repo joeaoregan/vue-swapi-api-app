@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch } from "vue";
+import { ref, computed, watch, onUnmounted } from "vue";
 
 const props = defineProps({
   planets: Array,
@@ -141,6 +141,21 @@ const visiblePages = computed(() => {
   return pages;
 });
 
+const showScrollTop = ref(false);
+
+function scrollToTop() {
+  window.scrollTo({
+    top: 0,
+    behavior: "smooth",
+  });
+}
+
+function handleScroll() {
+  showScrollTop.value = window.scrollY > 200;
+}
+
+window.addEventListener("scroll", handleScroll);
+
 // reset page when filtering
 watch(
   () => props.filterKey,
@@ -151,6 +166,10 @@ watch(
 
 watch(pageSize, () => {
   currentPage.value = 1;
+});
+
+onUnmounted(() => {
+  window.removeEventListener("scroll", handleScroll);
 });
 </script>
 
@@ -247,6 +266,10 @@ watch(pageSize, () => {
           <option :value="50">50</option>
         </select>
       </div>
+
+      <button class="scroll-to-top" @click="scrollToTop" v-show="showScrollTop">
+        ↑ Top
+      </button>
     </div>
   </div>
 </template>
