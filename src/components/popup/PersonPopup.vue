@@ -10,8 +10,6 @@
           <li><strong>Birth Year:</strong> {{ person.birth_year }}</li>
           <li><strong>Gender:</strong> {{ person.gender }}</li>
           <li><strong>Homeworld:</strong> {{ person.homeworldName }}</li>
-          <li><strong>Created:</strong> {{ person.created }}</li>
-          <li><strong>Edited:</strong> {{ person.edited }}</li>
         </ul>
 
         <button class="button" @click="$emit('toggle-popup')">Close</button>
