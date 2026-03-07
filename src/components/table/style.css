@@ -95,3 +95,11 @@ tr:nth-child(odd) {
   color: white;
   font-weight: bold;
 }
+
+/* ellipses */
+.pagination button[disabled] {
+  cursor: default;
+  background: transparent;
+  color: #555;
+  font-weight: normal;
+}

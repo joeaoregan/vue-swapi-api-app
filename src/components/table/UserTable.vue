@@ -108,6 +108,39 @@ function goToPage(page) {
   }
 }
 
+const visiblePages = computed(() => {
+  const pages = [];
+  const total = totalPages.value;
+  const current = currentPage.value;
+
+  // Always show first page
+  pages.push(1);
+
+  // Show left ellipsis if needed
+  if (current > 3) {
+    pages.push("…");
+  }
+
+  // Show pages around current page
+  for (let i = current - 1; i <= current + 1; i++) {
+    if (i > 1 && i < total) {
+      pages.push(i);
+    }
+  }
+
+  // Show right ellipsis if needed
+  if (current < total - 2) {
+    pages.push("…");
+  }
+
+  // Always show last page (if more than 1)
+  if (total > 1) {
+    pages.push(total);
+  }
+
+  return pages;
+});
+
 // reset page when filtering
 watch(
   () => props.filterKey,
@@ -192,9 +225,10 @@ watch(pageSize, () => {
         </button>
 
         <button
-          v-for="page in pageNumbers"
-          :key="page"
-          @click="goToPage(page)"
+          v-for="page in visiblePages"
+          :key="page + '-btn'"
+          @click="page !== '…' && goToPage(page)"
+          :disabled="page === '…'"
           :class="{ active: currentPage === page }"
         >
           {{ page }}
