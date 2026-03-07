@@ -1,56 +1,61 @@
-/* https://github.com/iamshaunjp/star-wars-text/tree/final-files */
-/* https://www.youtube.com/watch?v=kHrV2ZHzF-0 */
-
 @import url("https://fonts.googleapis.com/css2?family=Roboto:wght@500;700&display=swap");
 
-.container {
-  background: rgb(20, 20, 20);
+.aspect-169 {
+  position: relative;
+  width: 100%;
+  max-width: 1600px;
+  margin: 0 auto;
+  aspect-ratio: 16 / 9;
   overflow: hidden;
-  font-family: "Roboto";
-  /* push down the the wrapper by half the page */
-  /* margin: 50% 0 0 0; */
+  background: rgb(20, 20, 20);
+  font-family: "Roboto", sans-serif;
+}
+
+.fade-top {
   position: absolute;
   top: 0;
   left: 0;
   width: 100%;
-  height: 100%;
-}
-
-.container::after {
-  content: "";
-  position: absolute;
-  top: 0;
-  right: 0;
-  width: 100%;
-  height: 25%;
-  /* background to fade out the text as it goes up */
+  height: 50%;
   background: linear-gradient(
     180deg,
     rgba(20, 20, 20, 1) 40%,
     rgba(20, 20, 20, 0) 100%
   );
+  pointer-events: none;
+  z-index: 10;
+}
+
+.restart-btn {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  z-index: 20;
+  padding: 8px 14px;
+  background: #ffc909;
+  border: none;
+  font-weight: bold;
+  cursor: pointer;
+  color: black;
 }
 
 .wrapper {
   display: flex;
   height: 100%;
-  width: 60%;
+  width: 100%;
   margin: 0 auto;
-  /* perspective gives us a 3d space within the element to work with*/
-  /* perspective also has the effect of pushing the content "down" */
   perspective: 450px;
+  align-items: flex-end;
 }
 
-/* Start the crawl at the bottom of the screen */
 .scroll-text {
   color: #ffc909;
-  font-size: 3vw;
+  font-size: clamp(18px, 2.2vw, 32px);
   line-height: 1.5em;
   font-weight: bold;
   text-align: justify;
   position: absolute;
-  bottom: -100%; /* Start fully below the viewport */
-  animation: scroll 60s linear forwards; /* Desktop default */
+  animation: scroll 150s linear forwards;
 }
 
 h1,
@@ -60,32 +65,11 @@ h2 {
 
 @keyframes scroll {
   from {
-    transform: translateZ(0) rotateX(20deg) translateY(100%);
+    top: 100%;
+    transform: translateZ(0) rotateX(20deg);
   }
   to {
-    transform: translateZ(-2500px) rotateX(21deg) translateY(-7500px);
-  }
-}
-
-/* Tablets / small laptops */
-@media (max-width: 1024px) {
-  .scroll-text {
-    animation: scroll 80s linear forwards;
-  }
-}
-
-/* Mobile phones (portrait) */
-@media (max-width: 600px) and (orientation: portrait) {
-  .scroll-text {
-    animation: scroll 110s linear forwards;
-    font-size: 5vw; /* Slightly larger text for readability */
-  }
-}
-
-/* Very small screens */
-@media (max-width: 400px) and (orientation: portrait) {
-  .scroll-text {
-    animation: scroll 130s linear forwards;
-    font-size: 6vw;
+    top: -7500px;
+    transform: translateZ(-2500px) rotateX(21deg);
   }
 }
