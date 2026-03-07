@@ -28,6 +28,7 @@ npm run serve
 - Star Wars–themed loading screen
 - Component‑scoped CSS
 - Clean project structure
+- Client‑side pagination (page navigation + adjustable page size)
 
 ## Screenshots
 
