@@ -97,3 +97,11 @@ th {
   background-color: var(--header-bg);
   color: var(--text);
 }
+
+/* Highlighting search matches */
+mark {
+  background: var(--header-bg);
+  color: white;
+  padding: 0 2px;
+  border-radius: 2px;
+}

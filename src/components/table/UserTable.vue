@@ -1,5 +1,5 @@
 <script setup>
-import { ref, computed, watch, onUnmounted } from "vue";
+import { ref, computed, watch } from "vue";
 import Pagination from "@/components/pagination/Pagination.vue";
 import ScrollToTop from "@/components/scroll/ScrollToTop.vue";
 
@@ -46,6 +46,16 @@ function formatOutput(key, value) {
     }).format(date);
   }
   return key === "homeworld" ? getPlanetName(value) : value;
+}
+
+// search highlight
+function highlight(text, query) {
+  if (!query || !text) return text;
+
+  const safe = String(text);
+  const regex = new RegExp(`(${query})`, "gi");
+
+  return safe.replace(regex, `<mark>$1</mark>`);
 }
 
 const filteredData = computed(() => {
@@ -117,8 +127,10 @@ watch(pageSize, () => {
               }`"
             >
               {{ capitalFirstLetter(key) }}
-              <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'">
-              </span>
+              <span
+                class="arrow"
+                :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"
+              ></span>
             </th>
           </tr>
         </thead>
@@ -126,6 +138,7 @@ watch(pageSize, () => {
         <tbody>
           <tr v-for="entry in paginatedData" :key="entry.name">
             <td v-for="key in columns" :key="key">
+              <!-- HOMEWORLD BUTTON (unchanged) -->
               <template v-if="key === 'homeworld'">
                 <button
                   v-if="
@@ -146,8 +159,11 @@ watch(pageSize, () => {
                 </p>
               </template>
 
+              <!-- ALL OTHER COLUMNS WITH HIGHLIGHT -->
               <template v-else>
-                {{ formatOutput(key, entry[key]) }}
+                <span
+                  v-html="highlight(formatOutput(key, entry[key]), filterKey)"
+                ></span>
               </template>
             </td>
           </tr>
@@ -175,7 +191,6 @@ watch(pageSize, () => {
       />
 
       <ScrollToTop />
-      
     </div>
   </div>
 </template>
