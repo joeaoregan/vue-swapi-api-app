@@ -138,15 +138,26 @@ watch(pageSize, () => {
         <tbody>
           <tr v-for="entry in paginatedData" :key="entry.name">
             <td v-for="key in columns" :key="key">
-              <!-- HOMEWORLD BUTTON (unchanged) -->
-              <template v-if="key === 'homeworld'">
+              <!-- NAME: opens person popup -->
+              <template v-if="key === 'name'">
+                <button
+                  class="button"
+                  @click="$emit('togglePersonPopup', entry)"
+                  :title="`View details for ${entry.name}`"
+                >
+                  <span v-html="highlight(entry.name, filterKey)"></span>
+                </button>
+              </template>
+
+              <!-- HOMEWORLD: opens planet popup -->
+              <template v-else-if="key === 'homeworld'">
                 <button
                   v-if="
                     formatOutput(key, entry[key]).name !== 'unknown' &&
                     formatOutput(key, entry[key]).name !== 'Loading'
                   "
                   class="button"
-                  @click="$emit('togglePopup', formatOutput(key, entry[key]))"
+                  @click="$emit('toggle-popup', formatOutput(key, entry[key]))"
                   :title="`Click For ${
                     formatOutput(key, entry[key]).name
                   } Info`"
@@ -159,7 +170,7 @@ watch(pageSize, () => {
                 </p>
               </template>
 
-              <!-- ALL OTHER COLUMNS WITH HIGHLIGHT -->
+              <!-- OTHER COLUMNS: highlighted text -->
               <template v-else>
                 <span
                   v-html="highlight(formatOutput(key, entry[key]), filterKey)"

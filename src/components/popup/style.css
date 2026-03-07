@@ -1,23 +1,24 @@
 .popup {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
-  bottom: 0;
+  inset: 0;
   z-index: 99;
   background-color: rgba(0, 0, 0, 0.25);
 
   display: flex;
   align-items: center;
   justify-content: center;
+
+  animation: overlay-fade 0.25s ease;
 }
 
 .popup-inner {
-  /* background: #fff; */
   padding: 32px;
   border-radius: 8px;
+  background: var(--popup-bg);
+  color: var(--text);
 }
 
+/* Button style reused in table + popups */
 .button {
   background-color: #990000;
   color: #fff;
@@ -41,10 +42,6 @@
   transform: scale(1);
 }
 
-.popup {
-  animation: overlay-fade 0.25s ease;
-}
-
 @keyframes overlay-fade {
   from {
     background-color: rgba(0, 0, 0, 0);
@@ -54,8 +51,12 @@
   }
 }
 
-.popup-inner {
-  background: var(--popup-bg);
-  color: var(--text);
+.popup-inner ul {
+  list-style: none;
+  padding: 0;
+  margin: 0;
 }
 
+.popup-inner li {
+  margin-bottom: 6px;
+}
