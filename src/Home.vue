@@ -7,14 +7,17 @@
       <input name="query" v-model="searchQuery" />
     </form>
 
+    <LoadingScreen v-if="!ready" />
+
     <UserTable
+      v-else
       @toggle-popup="togglePopup"
       :planets="planets"
       :users="people"
       :columns="gridColumns"
       :filter-key="searchQuery"
       :ready="ready"
-    />    
+    />
 
     <PlanetPopup
       v-if="displayPopup"
@@ -33,8 +36,9 @@ const searchQuery = ref("");
 </script>
 
 <script>
-import PlanetPopup from "./components/popup/Popup";
+import PlanetPopup from "./components/popup/Popup"; // automatically registered component
 import UserTable from "./components/table/UserTable.vue";
+import LoadingScreen from "./components/loading/LoadingScreen.vue";
 import axios from "axios";
 
 export default {
@@ -42,6 +46,7 @@ export default {
 
   components: {
     UserTable,
+    LoadingScreen,
   },
 
   data() {
@@ -92,7 +97,6 @@ export default {
 
       console.log("All planets loaded");
     },
-
   },
 
   async mounted() {
@@ -102,7 +106,6 @@ export default {
 
     this.ready = true;
     console.log("Ready:", this.ready);
-
   },
 };
 </script>

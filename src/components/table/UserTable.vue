@@ -137,7 +137,7 @@ function sortBy(key) {
           />
           <p>These are not the users you are looking for</p>
         </div>
-        <p v-else id="users-loading">A Long Time Ago In A Galaxy Far Away...</p>
+        <div v-else class="fade-in"></div>
       </div>
     </div>
   </div>
