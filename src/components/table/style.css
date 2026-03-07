@@ -1,14 +1,10 @@
-table {
-  border: 2px solid #990000;
-  border-radius: 3px;
-  /* background-color: #fff; */
-}
+/* ============================================================
+   SHARED TABLE LAYOUT (NO COLORS)
+   ============================================================ */
 
-th {
-  background-color: #990000;
-  color: rgba(255, 255, 255, 0.66);
-  cursor: pointer;
-  user-select: none;
+table {
+  width: 100%;
+  border-collapse: collapse;
 }
 
 th,
@@ -17,91 +13,134 @@ td {
   padding: 5px 20px;
 }
 
-th.active {
-  color: #fff;
-}
-
-th.active .arrow {
-  opacity: 1;
-}
-
-/* tr:nth-child(even) {
-  background-color: #f9f9f9;
-}
-tr:nth-child(odd) {
-  background-color: #d9d9d9;
-} */
-
-.arrow {
-  display: inline-block;
-  vertical-align: middle;
-  width: 0;
-  height: 0;
-  margin-left: 5px;
-  opacity: 0.66;
-}
-
-.arrow.asc {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-bottom: 4px solid #fff;
-}
-
-.arrow.dsc {
-  border-left: 4px solid transparent;
-  border-right: 4px solid transparent;
-  border-top: 4px solid #fff;
-}
-
 .center {
   margin-left: auto;
   margin-right: auto;
 }
 
-#user-not-found {
-  padding: 20px;
-}
-
-table .button {
-  background-color: #990000;
-  color: #fff;
-  width: 95%;
-  padding: 2px;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-/* Sticky table header */
 thead th {
   position: sticky;
   top: 0;
   z-index: 2;
-  /* background-color: #990000; your existing header color */
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
 }
 
-table {
-  background-color: var(--bg);
-  color: var(--text);
-}
-
-tr:nth-child(even) {
-  background-color: var(--table-even);
-}
-
-tr:nth-child(odd) {
-  background-color: var(--table-odd);
-}
-
-th {
-  background-color: var(--header-bg);
-  color: var(--text);
-}
-
-/* Highlighting search matches */
 mark {
-  background: var(--header-bg);
-  color: white;
   padding: 0 2px;
   border-radius: 2px;
+}
+
+/* ============================================================
+   SHARED POPUP LINK STYLE
+   ============================================================ */
+
+.popup-link {
+  background: none;
+  border: none;
+  color: inherit;
+  cursor: pointer;
+  font-weight: bold;
+  text-decoration: underline;
+  padding: 0;
+}
+
+.popup-link:hover {
+  opacity: 0.8;
+}
+
+/* ============================================================
+   SHARED SORT ARROWS
+   ============================================================ */
+
+.arrow {
+  margin-left: 6px;
+  border: solid currentColor;
+  border-width: 0 2px 2px 0;
+  display: inline-block;
+  padding: 3px;
+}
+
+.arrow.asc {
+  transform: rotate(-135deg);
+}
+
+.arrow.dsc {
+  transform: rotate(45deg);
+}
+
+/* ============================================================
+   PEOPLE TABLE — RED THEME
+   ============================================================ */
+
+.people-table table {
+  border: 2px solid #990000;
+  border-radius: 3px;
+}
+
+.people-table th {
+  background: #990000;
+  color: #fff;
+}
+
+/* Even rows keep the red theme */
+.people-table tr:nth-child(even) {
+  background: #f15656;
+  color: #000; /* black text */
+}
+
+/* Odd rows become light grey */
+.people-table tr:nth-child(odd) {
+  background: #e6e6e6;
+  color: #000; /* black text */
+}
+
+.people-table mark {
+  background: #cc0000;
+  color: #fff;
+}
+
+/* ============================================================
+   PLANETS TABLE — YELLOW THEME
+   ============================================================ */
+
+.planets-table table {
+  border: 2px solid #ffc909;
+  border-radius: 3px;
+}
+
+.planets-table th {
+  background: #ffc909;
+  color: #000;
+}
+
+/* Even rows keep the yellow-tinted theme */
+.planets-table tr:nth-child(even) {
+  background: #fbfb78;
+  color: #000; /* black text */
+}
+
+/* Odd rows become light grey */
+.planets-table tr:nth-child(odd) {
+  background: #e6e6e6;
+  color: #000; /* black text */
+}
+.planets-table mark {
+  background: #ffea61;
+  color: #000;
+}
+
+/* ============================================================
+   PLANETS TABLE BUTTONS (pagination)
+   ============================================================ */
+
+.planets-table .pagination button {
+  background: #ffc909;
+  color: #000;
+  border: none;
+  padding: 6px 12px;
+  border-radius: 4px;
+}
+
+.planets-table .pagination button:hover {
+  background: #ffea61;
 }

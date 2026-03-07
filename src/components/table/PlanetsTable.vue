@@ -1,6 +1,5 @@
 <template>
-  <div>
-    <!-- TABLE -->
+  <div class="planets-table">
     <table class="sw-table">
       <thead>
         <tr>
@@ -23,7 +22,7 @@
         <tr v-for="planet in paginatedPlanets" :key="planet.name">
           <td>
             <button
-              class="button"
+              class="popup-link"
               @click="
                 $emit('toggle-planet', {
                   name: planet.name,
@@ -32,7 +31,6 @@
                   diameter: planet.diameter,
                 })
               "
-              :title="`View details for ${planet.name}`"
             >
               {{ planet.name }}
             </button>
@@ -45,7 +43,6 @@
       </tbody>
     </table>
 
-    <!-- PAGINATION -->
     <div class="pagination">
       <button :disabled="currentPage === 1" @click="currentPage--">Prev</button>
 
@@ -73,10 +70,8 @@ const props = defineProps({
   planets: Array,
 });
 
-// columns for sorting
 const columns = ["name", "climate", "population", "diameter"];
 
-// sorting state
 const sortKey = ref("");
 const sortOrders = ref(columns.reduce((o, key) => ((o[key] = 1), o), {}));
 
@@ -87,7 +82,7 @@ function capital(str) {
 function sortBy(key) {
   sortKey.value = key;
   sortOrders.value[key] *= -1;
-  currentPage.value = 1; // reset page on sort
+  currentPage.value = 1;
 }
 
 const sortedPlanets = computed(() => {
@@ -107,7 +102,6 @@ const sortedPlanets = computed(() => {
   return data;
 });
 
-// PAGINATION
 const currentPage = ref(1);
 const pageSize = ref(10);
 
@@ -120,93 +114,9 @@ const paginatedPlanets = computed(() => {
   return sortedPlanets.value.slice(start, start + pageSize.value);
 });
 
-// reset page when page size changes
 watch(pageSize, () => {
   currentPage.value = 1;
 });
 </script>
 
-<style>
-.sw-table {
-  width: 100%;
-  border-collapse: collapse;
-  margin-top: 10px;
-}
-
-.sw-table th,
-.sw-table td {
-  border: 1px solid #444;
-  padding: 8px;
-  text-align: left;
-  color: #ffc909;
-}
-
-.sw-table th {
-  background: #222;
-  font-weight: bold;
-  cursor: pointer;
-}
-
-.sw-table th.active {
-  background: #333;
-}
-
-.arrow {
-  margin-left: 6px;
-  border: solid #ffc909;
-  border-width: 0 2px 2px 0;
-  display: inline-block;
-  padding: 3px;
-}
-
-.arrow.asc {
-  transform: rotate(-135deg);
-}
-
-.arrow.dsc {
-  transform: rotate(45deg);
-}
-
-/* PAGINATION */
-.pagination {
-  margin-top: 15px;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  gap: 12px;
-}
-
-.pagination button {
-  padding: 6px 12px;
-  background: #ffc909;
-  border: none;
-  cursor: pointer;
-  border-radius: 4px;
-}
-
-.pagination button:disabled {
-  opacity: 0.4;
-  cursor: not-allowed;
-}
-
-.pagination select {
-  padding: 4px 8px;
-  background: #222;
-  color: #ffc909;
-  border: 1px solid #444;
-  border-radius: 4px;
-}
-
-.button {
-  background: none;
-  border: none;
-  color: #ffc909;
-  cursor: pointer;
-  font-weight: bold;
-  text-decoration: underline;
-}
-
-.button:hover {
-  color: #ffea61;
-}
-</style>
+<style src="./style.css"></style>

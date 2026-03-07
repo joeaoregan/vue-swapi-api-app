@@ -112,7 +112,7 @@ watch(pageSize, () => {
 </script>
 
 <template>
-  <div>
+  <div class="people-table">
     <div v-if="filteredData">
       <table v-if="filteredData.length" class="center">
         <thead>
@@ -122,9 +122,6 @@ watch(pageSize, () => {
               :key="key"
               @click="sortBy(key)"
               :class="{ active: sortKey == key }"
-              :title="`Sort By ${capitalFirstLetter(key)} ${
-                sortOrders[key] > 0 ? 'Descending' : 'Ascending'
-              }`"
             >
               {{ capitalFirstLetter(key) }}
               <span
@@ -141,9 +138,8 @@ watch(pageSize, () => {
               <!-- NAME → person popup -->
               <template v-if="key === 'name'">
                 <button
-                  class="button"
+                  class="popup-link"
                   @click="$emit('toggle-person', entry)"
-                  :title="`View details for ${entry.name}`"
                 >
                   <span v-html="highlight(entry.name, filterKey)"></span>
                 </button>
@@ -156,11 +152,8 @@ watch(pageSize, () => {
                     formatOutput(key, entry[key]).name !== 'unknown' &&
                     formatOutput(key, entry[key]).name !== 'Loading'
                   "
-                  class="button"
+                  class="popup-link"
                   @click="$emit('toggle-planet', formatOutput(key, entry[key]))"
-                  :title="`Click For ${
-                    formatOutput(key, entry[key]).name
-                  } Info`"
                 >
                   {{ formatOutput(key, entry[key]).name }}
                 </button>
@@ -206,4 +199,4 @@ watch(pageSize, () => {
   </div>
 </template>
 
-<style scoped src="./style.css"></style>
+<style src="./style.css"></style>
