@@ -1,5 +1,5 @@
 <script setup>
-import { computed, ref, watch } from "vue";
+import { computed, ref, watch, onMounted, onUnmounted } from "vue";
 
 const props = defineProps({
   currentPage: Number,
@@ -13,18 +13,15 @@ const props = defineProps({
 
 const emit = defineEmits(["update:currentPage", "update:pageSize"]);
 
-// Local writable copy of pageSize (props are readonly)
 const localPageSize = ref(props.pageSize);
 
-// Keep local copy in sync if parent updates pageSize
 watch(
   () => props.pageSize,
   (newVal) => {
     localPageSize.value = newVal;
-  }
+  },
 );
 
-// Smart pagination with ellipses
 const visiblePages = computed(() => {
   const pages = [];
   const total = props.totalPages;
@@ -66,6 +63,23 @@ function prevPage() {
 function updatePageSize() {
   emit("update:pageSize", localPageSize.value);
 }
+
+// Keyboard navigation
+function handleKeydown(event) {
+  if (event.key === "ArrowLeft") {
+    prevPage();
+  } else if (event.key === "ArrowRight") {
+    nextPage();
+  }
+}
+
+onMounted(() => {
+  window.addEventListener("keydown", handleKeydown);
+});
+
+onUnmounted(() => {
+  window.removeEventListener("keydown", handleKeydown);
+});
 </script>
 
 <template>
