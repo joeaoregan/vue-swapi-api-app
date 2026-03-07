@@ -103,3 +103,12 @@ tr:nth-child(odd) {
   color: #555;
   font-weight: normal;
 }
+
+/* Sticky table header */
+thead th {
+  position: sticky;
+  top: 0;
+  z-index: 2;
+  background-color: #990000; /* your existing header color */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2);
+}
