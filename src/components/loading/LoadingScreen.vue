@@ -9,5 +9,8 @@
   </div>
 </template>
 
+<script setup>
+// No script needed — component is purely presentational
+</script>
 
 <style scoped src="./style.css"></style>
