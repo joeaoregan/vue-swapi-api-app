@@ -5,13 +5,13 @@
 
 .container {
   background: rgb(20, 20, 20);
-  /* background: red; */
   overflow: hidden;
   font-family: "Roboto";
   /* push down the the wrapper by half the page */
   /* margin: 50% 0 0 0; */
   position: absolute;
 }
+
 .container::after {
   content: "";
   position: absolute;
@@ -26,6 +26,7 @@
     rgba(20, 20, 20, 0) 100%
   );
 }
+
 .wrapper {
   display: flex;
   height: 100%;
@@ -35,6 +36,7 @@
   /* perspective also has the effect of pushing the content "down" */
   perspective: 450px;
 }
+
 .scroll-text {
   color: #ffc909;
   font-size: 3vw;
@@ -42,8 +44,9 @@
   font-weight: bold;
   text-align: justify;
   position: relative;
-  animation: scroll 60s linear forwards;
+  animation: scroll 60s linear forwards; /* Desktop default */
 }
+
 h1,
 h2 {
   text-align: center;
@@ -57,5 +60,26 @@ h2 {
   to {
     top: -7500px;
     transform: translateZ(-2500px) rotateX(21deg);
+  }
+}
+
+/* Tablets / small laptops */
+@media (max-width: 1024px) {
+  .scroll-text {
+    animation: scroll 75s linear forwards;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 600px) {
+  .scroll-text {
+    animation: scroll 90s linear forwards;
+  }
+}
+
+/* Very small screens */
+@media (max-width: 400px) {
+  .scroll-text {
+    animation: scroll 110s linear forwards;
   }
 }
