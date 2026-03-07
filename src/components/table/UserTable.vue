@@ -1,6 +1,7 @@
 <script setup>
 import { ref, computed, watch, onUnmounted } from "vue";
 import Pagination from "@/components/pagination/Pagination.vue";
+import ScrollToTop from "@/components/scroll/ScrollToTop.vue";
 
 const props = defineProps({
   planets: Array,
@@ -87,21 +88,6 @@ const paginatedData = computed(() => {
   return filteredData.value.slice(start, start + pageSize.value);
 });
 
-const showScrollTop = ref(false);
-
-function scrollToTop() {
-  window.scrollTo({
-    top: 0,
-    behavior: "smooth",
-  });
-}
-
-function handleScroll() {
-  showScrollTop.value = window.scrollY > 200;
-}
-
-window.addEventListener("scroll", handleScroll);
-
 // reset page when filtering
 watch(
   () => props.filterKey,
@@ -112,10 +98,6 @@ watch(
 
 watch(pageSize, () => {
   currentPage.value = 1;
-});
-
-onUnmounted(() => {
-  window.removeEventListener("scroll", handleScroll);
 });
 </script>
 
@@ -192,9 +174,8 @@ onUnmounted(() => {
         @update:pageSize="pageSize = $event"
       />
 
-      <button class="scroll-to-top" @click="scrollToTop" v-show="showScrollTop">
-        ↑ Top
-      </button>
+      <ScrollToTop />
+      
     </div>
   </div>
 </template>
