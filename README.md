@@ -1,13 +1,6 @@
 # Vue.js SWAPI (The Star Wars API) Project
 ## joe-oregan-front-end-dev-app
 
-![Status](https://img.shields.io/website?url=https%3A%2F%2Fvuejs-frontenddemo.onrender.com&logo=render&style=for-the-badge&label=LIVE) 
-![Version](https://img.shields.io/badge/version-0.1.0-007ec6?style=for-the-badge)
-![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Enabled-black?style=for-the-badge&logo=darkreader&logoColor=white)
-![UI/UX](https://img.shields.io/badge/UI%2FUX-Optimized-FF69B4?style=for-the-badge&logo=adobe-lightroom)
-![Performance](https://img.shields.io/badge/Performance-Optimized-orange?style=for-the-badge&logo=googlechrome&logoColor=white)
-![Force](https://img.shields.io/badge/May_The_Force-Be_With_You-red?style=for-the-badge&logo=starwars&logoColor=black)
-
 ![Vue 3.5](https://img.shields.io/badge/Vue-3.5.30-35495e?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
 ![Composition API](https://img.shields.io/badge/Vue_3-Composition_API-41b883?style=for-the-badge&logo=vue.js&logoColor=white)
 ![Router 5](https://img.shields.io/badge/Router-5.0.4-42b883?style=for-the-badge&logo=vue.js&logoColor=white)
@@ -15,7 +8,18 @@
 ![Axios](https://img.shields.io/badge/Axios-1.13.6-5a29e4?style=for-the-badge&logo=axios&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 
-# ![SWAPI Explorer](https://img.shields.io/badge/SWAPI_EXPLORER-Star_Wars_Database-FFE81F?style=for-the-badge&labelColor=000000)
+![Status](https://img.shields.io/website?url=https%3A%2F%2Fvuejs-frontenddemo.onrender.com&logo=render&style=for-the-badge&label=LIVE) 
+![Version](https://img.shields.io/badge/version-0.1.0-007ec6?style=for-the-badge)
+![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Enabled-black?style=for-the-badge&logo=darkreader&logoColor=white)
+![UI/UX](https://img.shields.io/badge/UI%2FUX-Optimized-FF69B4?style=for-the-badge&logo=adobe-lightroom)
+![Performance](https://img.shields.io/badge/Performance-Optimized-orange?style=for-the-badge&logo=googlechrome&logoColor=white)
+
+![SWAPI Explorer](https://img.shields.io/badge/SWAPI_EXPLORER-Star_Wars_Database-FFE81F?style=for-the-badge&labelColor=000000)
+![Force](https://img.shields.io/badge/May_The_Force-Be_With_You-red?style=for-the-badge&logo=starwars&logoColor=black)
+
+![GitHub repo size](https://img.shields.io/github/repo-size/joeaoregan/vue-swapi-api-app?style=flat-square&color=orange)
+![Last Commit](https://img.shields.io/github/last-commit/joeaoregan/vue-swapi-api-app?style=flat-square&color=blue)
+![Stars](https://img.shields.io/github/stars/joeaoregan/vue-swapi-api-app?style=social)
 
 ---
 
