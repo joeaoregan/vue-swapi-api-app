@@ -1,11 +1,15 @@
+<p align="center">
+  <img src="https://capsule-render.vercel.app/render?type=soft&color=000000&text=SWAPI%20EXPLORER&fontSize=70&fontAlignY=40&fontColor=FFE81F&animation=twinkling" />
+</p>
+
 # Vue.js SWAPI (The Star Wars API) Project
 ## joe-oregan-front-end-dev-app
 
 [![Website](https://img.shields.io/website?url=https%3A%2F%2Fvuejs-frontenddemo.onrender.com&logo=render&style=for-the-badge)](https://vuejs-frontenddemo.onrender.com)
-![Vue 3](https://img.shields.io/badge/vue-%2335495e.svg?style=for-the-badge&logo=vuedotjs&logoColor=%234FC08D)
-![Vue Router](https://img.shields.io/badge/Vue_Router-42b883?style=for-the-badge&logo=vue.js&logoColor=white)
-![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB)
-![Axios](https://img.shields.io/badge/axios-671ddf?style=for-the-badge&logo=axios&logoColor=white)
+![Vue 3.5](https://img.shields.io/badge/Vue-3.5.30-35495e?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Router 5](https://img.shields.io/badge/Router-5.0.4-42b883?style=for-the-badge&logo=vue.js&logoColor=white)
+![Express 5](https://img.shields.io/badge/Express-5.2.1-000000?style=for-the-badge&logo=express&logoColor=white)
+![Axios](https://img.shields.io/badge/Axios-1.13.6-5a29e4?style=for-the-badge&logo=axios&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
 ![Version](https://img.shields.io/badge/version-0.1.0-007ec6?style=for-the-badge)
 ![Force](https://img.shields.io/badge/May_The_Force-Be_With_You-red?style=for-the-badge&logo=starwars&logoColor=black)
