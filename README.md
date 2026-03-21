@@ -1,18 +1,20 @@
-<p align="center">
-  <img src="https://capsule-render.vercel.app/render?type=soft&color=000000&text=SWAPI%20EXPLORER&fontSize=70&fontAlignY=40&fontColor=FFE81F&animation=twinkling" />
-</p>
-
 # Vue.js SWAPI (The Star Wars API) Project
 ## joe-oregan-front-end-dev-app
 
-[![Website](https://img.shields.io/website?url=https%3A%2F%2Fvuejs-frontenddemo.onrender.com&logo=render&style=for-the-badge)](https://vuejs-frontenddemo.onrender.com)
+![Status](https://img.shields.io/website?url=https%3A%2F%2Fvuejs-frontenddemo.onrender.com&logo=render&style=for-the-badge&label=LIVE) 
+![Version](https://img.shields.io/badge/version-0.1.0-007ec6?style=for-the-badge)
+![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Enabled-black?style=for-the-badge&logo=darkreader&logoColor=white)
+![Force](https://img.shields.io/badge/May_The_Force-Be_With_You-red?style=for-the-badge&logo=starwars&logoColor=black)
+
 ![Vue 3.5](https://img.shields.io/badge/Vue-3.5.30-35495e?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)
+![Composition API](https://img.shields.io/badge/Vue_3-Composition_API-41b883?style=for-the-badge&logo=vue.js&logoColor=white)
 ![Router 5](https://img.shields.io/badge/Router-5.0.4-42b883?style=for-the-badge&logo=vue.js&logoColor=white)
 ![Express 5](https://img.shields.io/badge/Express-5.2.1-000000?style=for-the-badge&logo=express&logoColor=white)
 ![Axios](https://img.shields.io/badge/Axios-1.13.6-5a29e4?style=for-the-badge&logo=axios&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
-![Version](https://img.shields.io/badge/version-0.1.0-007ec6?style=for-the-badge)
-![Force](https://img.shields.io/badge/May_The_Force-Be_With_You-red?style=for-the-badge&logo=starwars&logoColor=black)
+
+# ![SWAPI Explorer](https://img.shields.io/badge/SWAPI_EXPLORER-Star_Wars_Database-FFE81F?style=for-the-badge&labelColor=000000)
+
 ---
 
 [Vue.js](https://vuejs.org/) project using [SWAPI ~~swapi.dev~~ ~~swapi.tech~~ swapi.dev](https://swapi.dev/)

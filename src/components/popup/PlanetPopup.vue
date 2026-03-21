@@ -4,21 +4,27 @@
       <div class="popup-inner">
         <h1>{{ planet.name }}</h1>
 
-        <p>
-          <strong>Diameter:</strong> {{ formatStringOrNumber(planet.diameter) }}
-        </p>
-        <p><strong>Climate:</strong> {{ planet.climate }}</p>
-        <p>
-          <strong>Population:</strong>
-          {{ formatStringOrNumber(planet.population) }}
-        </p>
+        <div v-if="planet.diameter">
+          <p>
+            <strong>Diameter:</strong>
+            {{ formatStringOrNumber(planet.diameter) }}
+          </p>
+          <p><strong>Climate:</strong> {{ planet.climate }}</p>
+          <p>
+            <strong>Population:</strong>
+            {{ formatStringOrNumber(planet.population) }}
+          </p>
+        </div>
+
+        <div v-else class="loading-text">
+          <p>Fetching planetary data from the archives...</p>
+        </div>
 
         <button class="button" @click="emit('toggle-planet')">Close</button>
       </div>
     </transition>
   </div>
 </template>
-
 <script setup>
 import { onMounted, onUnmounted } from "vue";
 
@@ -33,9 +39,9 @@ function capitalFirstLetter(word) {
 }
 
 function formatStringOrNumber(value) {
-  return parseInt(value)
-    ? parseInt(value).toLocaleString()
-    : capitalFirstLetter(value);
+  if (!value || value === "unknown") return "Unknown";
+  const num = parseInt(value);
+  return isNaN(num) ? capitalFirstLetter(value) : num.toLocaleString();
 }
 
 function handleKeydown(event) {

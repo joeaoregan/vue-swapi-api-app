@@ -10,7 +10,10 @@
             :class="{ active: sortKey === key }"
           >
             {{ capitalFirstLetter(key) }}
-            <span class="arrow" :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"></span>
+            <span
+              class="arrow"
+              :class="sortOrders[key] > 0 ? 'asc' : 'dsc'"
+            ></span>
           </th>
         </tr>
       </thead>
@@ -18,7 +21,6 @@
       <tbody>
         <tr v-for="entry in paginatedData" :key="entry.name">
           <td v-for="key in columns" :key="key">
-
             <!-- NAME POPUP -->
             <template v-if="key === 'name'">
               <button class="popup-link" @click="$emit('toggle-person', entry)">
@@ -40,9 +42,10 @@
 
             <!-- OTHER FIELDS -->
             <template v-else>
-              <span v-html="highlight(formatOutput(key, entry[key]), filterKey)"></span>
+              <span
+                v-html="highlight(formatOutput(key, entry[key]), filterKey)"
+              ></span>
             </template>
-
           </td>
         </tr>
       </tbody>
@@ -78,7 +81,7 @@ function capitalFirstLetter(str) {
 
 function getPlanetName(url) {
   const p = props.planets.find((x) => x.url === url);
-  return p ? { name: p.name } : { name: "unknown" };
+  return p ? p : { name: "unknown" };
 }
 
 function formatOutput(key, value) {
@@ -93,7 +96,10 @@ function formatOutput(key, value) {
 
 function highlight(text, query) {
   if (!query) return text;
-  return String(text).replace(new RegExp(`(${query})`, "gi"), "<mark>$1</mark>");
+  return String(text).replace(
+    new RegExp(`(${query})`, "gi"),
+    "<mark>$1</mark>",
+  );
 }
 
 const filteredData = computed(() => {
@@ -107,9 +113,7 @@ const filteredData = computed(() => {
   if (sortKey.value) {
     const key = sortKey.value;
     const order = sortOrders.value[key];
-    data = [...data].sort((a, b) =>
-      (a[key] > b[key] ? 1 : -1) * order,
-    );
+    data = [...data].sort((a, b) => (a[key] > b[key] ? 1 : -1) * order);
   }
   return data;
 });
