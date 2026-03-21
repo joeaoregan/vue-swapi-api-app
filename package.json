@@ -1,5 +1,5 @@
 {
-  "name": "joe-oregan-front-end-dev-app",
+  "name": "vue-swapi-api-app",
   "version": "0.1.0",
   "private": true,
   "postinstall": "npm run build",
