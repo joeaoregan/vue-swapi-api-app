@@ -4,6 +4,8 @@
 ![Status](https://img.shields.io/website?url=https%3A%2F%2Fvuejs-frontenddemo.onrender.com&logo=render&style=for-the-badge&label=LIVE) 
 ![Version](https://img.shields.io/badge/version-0.1.0-007ec6?style=for-the-badge)
 ![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Enabled-black?style=for-the-badge&logo=darkreader&logoColor=white)
+![UI/UX](https://img.shields.io/badge/UI%2FUX-Optimized-FF69B4?style=for-the-badge&logo=adobe-lightroom)
+![Performance](https://img.shields.io/badge/Performance-Optimized-orange?style=for-the-badge&logo=googlechrome&logoColor=white)
 ![Force](https://img.shields.io/badge/May_The_Force-Be_With_You-red?style=for-the-badge&logo=starwars&logoColor=black)
 
 ![Vue 3.5](https://img.shields.io/badge/Vue-3.5.30-35495e?style=for-the-badge&logo=vuedotjs&logoColor=4FC08D)

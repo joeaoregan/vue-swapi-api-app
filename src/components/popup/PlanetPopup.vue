@@ -4,7 +4,7 @@
       <div class="popup-inner">
         <h1>{{ planet.name }}</h1>
 
-        <div v-if="planet.diameter">
+        <div v-if="planet.diameter" class="stats-container">
           <p>
             <strong>Diameter:</strong>
             {{ formatStringOrNumber(planet.diameter) }}
@@ -16,15 +16,19 @@
           </p>
         </div>
 
-        <div v-else class="loading-text">
-          <p>Fetching planetary data from the archives...</p>
+        <div v-else class="loader-wrapper">
+          <div class="saber-spinner"></div>
+          <p>Accessing Imperial Archives...</p>
         </div>
 
-        <button class="button" @click="emit('toggle-planet')">Close</button>
+        <button class="button close-btn" @click="emit('toggle-planet')">
+          Close
+        </button>
       </div>
     </transition>
   </div>
 </template>
+
 <script setup>
 import { onMounted, onUnmounted } from "vue";
 
