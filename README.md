@@ -137,6 +137,6 @@ Star Wars and all related properties are trademarks of Lucasfilm Ltd.*
 
 &copy; 2026 Joe O'Regan
 
-[⬆️ Back to Top](#)
+[⬆️ Back to Top](https://github.com/joeaoregan/vue-swapi-api-app)
 
 </div>
