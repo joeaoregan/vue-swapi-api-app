@@ -7,12 +7,15 @@
 ![Express 5](https://img.shields.io/badge/Express-5.2.1-000000?style=for-the-badge&logo=express&logoColor=white)
 ![Axios](https://img.shields.io/badge/Axios-1.13.6-5a29e4?style=for-the-badge&logo=axios&logoColor=white)
 ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white)
+![NPM Version](https://img.shields.io/badge/NPM-%3E%3D10.0.0-cb3837?style=for-the-badge&logo=npm)
 
-![Status](https://img.shields.io/website?url=https%3A%2F%2Fvuejs-frontenddemo.onrender.com&logo=render&style=for-the-badge&label=LIVE) 
-![Version](https://img.shields.io/badge/version-0.1.0-007ec6?style=for-the-badge)
-![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Enabled-black?style=for-the-badge&logo=darkreader&logoColor=white)
-![UI/UX](https://img.shields.io/badge/UI%2FUX-Optimized-FF69B4?style=for-the-badge&logo=adobe-lightroom)
-![Performance](https://img.shields.io/badge/Performance-Optimized-orange?style=for-the-badge&logo=googlechrome&logoColor=white)
+![Status](https://img.shields.io/website?url=https%3A%2F%2Fvuejs-frontenddemo.onrender.com&logo=render&style=flat-square&label=LIVE) 
+![Version](https://img.shields.io/badge/version-0.1.0-007ec6?style=flat-square)
+![Dark Mode](https://img.shields.io/badge/Dark%20Mode-Enabled-black?style=flat-square&logo=darkreader&logoColor=white)
+![UI/UX](https://img.shields.io/badge/UI%2FUX-Optimized-FF69B4?style=flat-square&logo=adobe-lightroom)
+![Performance](https://img.shields.io/badge/Performance-Optimized-orange?style=flat-square&logo=googlechrome&logoColor=white)
+![Maintained](https://img.shields.io/badge/Maintained%3F-yes-green.svg?style=flat-square)
+![Vulnerabilities](https://img.shields.io/badge/vulnerabilities-0-brightgreen?style=flat-square)
 
 ![SWAPI Explorer](https://img.shields.io/badge/SWAPI_EXPLORER-Star_Wars_Database-FFE81F?style=for-the-badge&labelColor=000000)
 ![Force](https://img.shields.io/badge/May_The_Force-Be_With_You-red?style=for-the-badge&logo=starwars&logoColor=black)
@@ -131,9 +134,9 @@ Star Wars and all related properties are trademarks of Lucasfilm Ltd.*
 
 <div align="center">
 
-[![GitHub](https://img.shields.io/badge/GitHub-181717?style=flat&logo=github&logoColor=white)](https://github.com/joeaoregan)
-[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=flat&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joeaoregan/)
-[![Email](https://img.shields.io/badge/Email-D14836?style=flat&logo=gmail&logoColor=white)](mailto:joeaoregan@yahoo.ie)
+[![GitHub](https://img.shields.io/badge/GitHub-181717?style=for-the-badge&logo=github&logoColor=white)](https://github.com/joeaoregan)
+[![LinkedIn](https://img.shields.io/badge/LinkedIn-0A66C2?style=for-the-badge&logo=linkedin&logoColor=white)](https://www.linkedin.com/in/joeaoregan/)
+[![Email](https://img.shields.io/badge/Email-D14836?style=for-the-badge&logo=gmail&logoColor=white)](mailto:joeaoregan@yahoo.ie)
 
 &copy; 2026 Joe O'Regan
 
