@@ -30,10 +30,11 @@
 - Depends which one is working whenever I add updates
 - SWAPI, The Star Wars API
 
-## Demo
+## Links
 
 - [Live Render App](https://vuejs-frontenddemo.onrender.com/ "See App on Render")
 - [YouTube Demo](https://youtu.be/IHqwXBT4aNg)
+- [Porfolio Docs](https://joeaoregan.github.io/projects/#star-wars-api-swapi-application)
 
 ## Installation & Running
 
