@@ -30,9 +30,10 @@
 - Depends which one is working whenever I add updates
 - SWAPI, The Star Wars API
 
-## Live Demo
+## Demo
 
-[Render App](https://vuejs-frontenddemo.onrender.com/ "See App on Render")
+- [Live Render App](https://vuejs-frontenddemo.onrender.com/ "See App on Render")
+- [YouTube Demo](https://youtu.be/IHqwXBT4aNg)
 
 ## Installation & Running
 
